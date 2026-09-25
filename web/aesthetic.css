@@ -1,0 +1,19 @@
+
+#question{
+    box-shadow: 2.5px 2.5px 8px pink, 5px 5px 8px #fbfbb7, 10px 10px 8px #b8ffb8, 13px 13px 8px #a9fefe, 20px 20px 8px #e5a9fe;
+    color: dodgerblue;
+    background-color: pink;
+}
+
+#answer1{
+    background-color: blue;
+}
+#answer2{
+    background-color: lime
+}
+#answer3{
+    background-color: darkviolet
+}
+#answer4{
+    background-color: red
+}
