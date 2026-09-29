@@ -7,6 +7,8 @@ class Car {
         this.speed = speed
     }
     draw() {
+        //console.log(this.x,this.y)
+        clear()
         fill(this.colour)
         rect(this.x, this.y, 60, 30)
         fill("black")
@@ -17,15 +19,9 @@ class Car {
 
 
     move(){
-            // this.speed = 2 // Speed factor
-            // let distX = targetX - this.x; // Distance to the cursor on X axis
-            // let distY = targetY - this.y; // Distance to the cursor on Y axis
-            // let dist = Math.sqrt(distX * distX + distY * distY); // Total distance f is this pythagoras
-            // this.x += distX / dist * this.speed; // Move along the X axis
-            // this.y += distY / dist * this.speed; // Move along the Y axis
-
-						console.log("Move")
-        
+            this.speed = 2
+            this.x += 80
+                    
     }
 
     

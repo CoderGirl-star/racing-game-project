@@ -1,13 +1,13 @@
-let img
-function setup() {
+//let img
+//function setup() {
     //image(img, 0, 0, width, height)
 
-}
+//}
 
 
-function preload() {
+//function preload() {
     //img = loadImage("map.jpg")
-}
+//}
 
 function outputText(txt) {
     // add txt to a new paragraph

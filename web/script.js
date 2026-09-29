@@ -2,8 +2,8 @@
 		let p; //= new Car(50,50,'blue')
 		let pid;
 		let cars = [];
-		var socket = io();
-		var newcolour = false;
+		let socket = io();
+		let newcolour = false;
 		let wordJSON;
 
 		function setup() {
@@ -14,8 +14,8 @@
 				//let a = [10, 20, 30, 40, 50];
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
-				// c = "blue";
-				// socket.emit("newCo", { x: mouseX, y: mouseY, c: c, s: 0 });
+				c = "blue";
+				socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
 		}
 
 		socket.on("coord", function (data) {
@@ -23,7 +23,7 @@
 				p.draw();
 				cars.push(p);
 				//getPlayerID()
-				console.log(cars)
+				console.log(p)
 		});
 
 		socket.on("newLang", function (data) {
@@ -91,7 +91,7 @@
 						//move car of index 0 
 						console.log(cars)
 						let selectedcar = cars[0]
-						selectedcar.move()
+						selectedcar.move()//move
 						selectedcar.draw();
 						console.log(cars[0])
 				}else{

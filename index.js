@@ -1,11 +1,10 @@
-//Add this code to index.js
-// include socket.io and express libraries
+
 let socketio = require("socket.io");
 let express = require("express");
 let sql = require('sqlite3').verbose()
 // create express object
 let exp = express();
-// use it to serve pages from the web folder
+// serves pages from the web folder
 exp.use(express.static("web"));
 let web = exp.listen(3000, function () {
   console.log("Running");
