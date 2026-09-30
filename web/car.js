@@ -6,7 +6,7 @@ class Car {
         this.colour = colour
         this.speed = speed
     }
-    draw() {
+    update() {
         //console.log(this.x,this.y)
         clear()
         fill(this.colour)
@@ -20,7 +20,9 @@ class Car {
 
     move(){
             this.speed = 2
-            this.x += 80
+            let smoothMove = lerp(this.x, this.x+200,0.1)
+            console.log(smoothMove)
+            this.x += smoothMove
                     
     }
 
