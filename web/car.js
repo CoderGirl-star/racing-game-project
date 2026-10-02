@@ -22,7 +22,15 @@ class Car {
             this.speed = 2
             let smoothMove = lerp(this.x, this.x+200,0.1)
             console.log(smoothMove)
-            this.x += smoothMove
+            let startTime = millis() / 1000//marks when the loop starts in seconds
+            for (let i = 0; i < 10; i++) {
+                if (startTime == startTime + 1000){//every second??
+                    this.x += smoothMove
+                    startTime = millis()
+                }
+                
+            }
+            
                     
     }
 

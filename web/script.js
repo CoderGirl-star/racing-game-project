@@ -18,8 +18,7 @@
 				socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
 		}
 		function draw(){
-            selectedcar.move()//move
-			selectedcar.update()
+			
 		 }
 		socket.on("coord", function (data) {
 				p = new Car(data.x, data.y, data.c, data.s);
@@ -27,6 +26,7 @@
 				cars.push(p);
 				//getPlayerID()
 				console.log(p)
+				//cars[0].move()
 		});
 
 		socket.on("newLang", function (data) {
@@ -36,7 +36,7 @@
 				//console.log(data.w)
 				const DATABASE_LENGTH  = data.w[0].length
 				let qu = getRandomNumber(DATABASE_LENGTH)
-				wordJSON = data.w[0][qu]; //<--- polo is like an arbitrary name for it I GOT IT!!!!!!!!
+				wordJSON = data.w[0][qu]; 
 				//console.log(wordJSON); //
 				if (wordJSON.EnglishWord == null ||wordJSON.FrenchWord == null) {
 						//those pesky titles and weird null entries
