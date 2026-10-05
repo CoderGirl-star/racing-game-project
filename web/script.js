@@ -5,7 +5,8 @@
 		let socket = io();
 		let newcolour = false;
 		let wordJSON;
-
+		let setupTime
+		
 		function setup() {
 				createCanvas(2080, 1080);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
@@ -17,9 +18,6 @@
 				c = "blue";
 				socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
 		}
-		function draw(){
-			
-		 }
 		socket.on("coord", function (data) {
 				p = new Car(data.x, data.y, data.c, data.s);
 				p.update();
@@ -28,6 +26,7 @@
 				console.log(p)
 				//cars[0].move()
 		});
+
 
 		socket.on("newLang", function (data) {
 				//server gave us newScore
@@ -89,12 +88,20 @@
 				//console.log(clicked)// IT WORKS!!!
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
+						setupTime = (millis())
 						outputText("you did it!")
 						//move car of index 0 
 						//console.log(cars)
 						let selectedcar = cars[0]
-						selectedcar.move()//move
-						selectedcar.update();
+						//let startTime = millis()
+						//for (let i = 0; i < 10; i++) {
+							//if (startTime == startTime + 1000){
+                				selectedcar.move()//move
+								selectedcar.update()
+								//startTime = millis()
+            		//}
+				//}
+					;
 						//console.log(cars[0])
 				}else{
 						outputText("wrong answer brotato")

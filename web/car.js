@@ -1,4 +1,6 @@
 
+
+
 class Car {
     constructor(x, y, colour,speed) {
         this.x = x
@@ -20,16 +22,18 @@ class Car {
 
     move(){
             this.speed = 2
-            let smoothMove = lerp(this.x, this.x+200,0.1)
+            let smoothMove = lerp(this.x, this.x+50,0.1)
             console.log(smoothMove)
-            let startTime = millis() / 1000//marks when the loop starts in seconds
+            //let startTime = millis() / 1000//marks when the loop starts in seconds
             for (let i = 0; i < 10; i++) {
-                if (startTime == startTime + 1000){//every second??
-                    this.x += smoothMove
-                    startTime = millis()
+                //if (startTime == startTime + 1000){//every second??
+                    let accelerationTime = millis() - setupTime
+                    console.log(accelerationTime)
+                    this.x += accelerationTime
+                    //startTime = millis()
                 }
                 
-            }
+            //}
             
                     
     }
