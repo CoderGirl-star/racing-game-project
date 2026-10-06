@@ -1,5 +1,7 @@
 
-		let p; //= new Car(50,50,'blue')
+		let player; //= new Car(50,50,'blue')
+		let x = 0
+		let y = 0
 		let pid;
 		let cars = [];
 		let socket = io();
@@ -16,16 +18,24 @@
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				c = "blue";
-				socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
+				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
+				player = new Car(x,y,c,100)
+				cars.push(player)
+
 		}
-		socket.on("coord", function (data) {
-				p = new Car(data.x, data.y, data.c, data.s);
-				p.update();
-				cars.push(p);
+		//socket.on("coord", function (data) {
+				//p = new Car(data.x, data.y, data.c, data.s);
+				//p.update();
+				//cars.push(p);
 				//getPlayerID()
-				console.log(p)
+				//console.log(p)
 				//cars[0].move()
-		});
+		//});
+		function draw(){
+			frameRate(25)
+			player.move()
+			player.update()
+		}
 
 
 		socket.on("newLang", function (data) {
@@ -88,23 +98,11 @@
 				//console.log(clicked)// IT WORKS!!!
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
-						setupTime = (millis())
 						outputText("you did it!")
-						//move car of index 0 
-						//console.log(cars)
-						let selectedcar = cars[0]
-						//let startTime = millis()
-						//for (let i = 0; i < 10; i++) {
-							//if (startTime == startTime + 1000){
-                				selectedcar.move()//move
-								selectedcar.update()
-								//startTime = millis()
-            		//}
-				//}
-					;
-						//console.log(cars[0])
+						player.speed = 250
 				}else{
 						outputText("wrong answer brotato")
+						player.speed = 50
 				}
 		}
 				//loop through players 

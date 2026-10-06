@@ -4,10 +4,7 @@
 
 //}
 
-
-//function preload() {
     //img = loadImage("map.jpg")
-//}
 
 function outputText(txt) {
     // add txt to a new paragraph
