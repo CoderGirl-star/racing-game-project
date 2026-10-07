@@ -10,7 +10,7 @@ function outputText(txt) {
     // add txt to a new paragraph
     let newPara = document.createElement("p")
     newPara.innerHTML = txt
-    leaderboard.appendChild(newPara)
+    questionText.appendChild(newPara)
     newPara.scrollIntoView()
     
 }

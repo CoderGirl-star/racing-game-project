@@ -19,8 +19,21 @@
         <button id="answer2" onclick="getAnswer(this.id)"></button>
         <button id="answer3" onclick="getAnswer(this.id)"></button>
         <button id="answer4" onclick="getAnswer(this.id)"></button>
-        <div id="leaderboard"></div>
-        
+        <div id="questionText"></div>
+        <div id = "colourCarMenu">
+            <label> Choose car colour: </label>
+            <input type="color" id ="carColour"/>
+            <button id="confirmColour" onclick="changeColour()"> select colour</button>
+        </div>
+        <div id = "selectWordList" onload = "populateOptions()">
+            <label>Choose a word list:</label>
+            <select name="words" id="wordsList"> 
+                <option id = "option1"></option>
+                <option id = "option2"></option>
+                <option id = "option3"></option>
+                <option id = "option4"></option>
+           </select>
+        </div>
         <h1>test</h1>
     </body>
 </html>

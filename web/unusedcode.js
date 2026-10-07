@@ -73,3 +73,11 @@
 
 //console.log(theQuestion.correct)//the word its now checking against
 //answerText.innerHTML = wordJSON.EnglishWord; //theQuestion.correct//problematic sometimes it works sometimes not -  this is the english word of wordjSON which has a chance be to null/undefined
+
+//<label for="words">Choose a word list:</label>
+//<select name="words" id="wordsList"> //this is html remove the // when you need it
+            //<option value="volvo">Volvo</option>
+           // <option value="saab">Saab</option>
+           // <option value="opel">Opel</option>
+           // <option value="audi">Audi</option>
+   //     </select>

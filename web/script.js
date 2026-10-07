@@ -121,6 +121,20 @@
 				socket.emit("pid")
 		}
 
+		function changeColour(){
+			let chosenColour = document.getElementById("carColour").value
+			player.colour = chosenColour
+		}
+
+		function populateOptions(){
+			socket.emit("lists")
+		}
+
+		socket.on("returned_lists", function (data) {
+			console.log(data.t)
+		});
+
+
 		socket.on("id", function (data) {
 				//console.log(data)
 				pid = data.playerID

@@ -22,7 +22,7 @@ class Car {
 
     move(){
             let smoothMove = lerp(0,this.speed,0.1)
-            console.log(smoothMove)
+            //console.log(smoothMove)
             this.x += smoothMove
             if (this.x > windowWidth){
                 this.x = 0

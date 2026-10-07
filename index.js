@@ -70,6 +70,18 @@ io.on("connection", function (socket) {
   socket.on("pid", function (data) {
     io.emit("id", {playerID: socket.id});
   });
+
+  socket.on("lists", function (data) {
+    db.all('SELECT Topic FROM frenchdb', (err, rows) => {
+      if (err) throw err;
+        let list = []
+        list.push(rows)
+        let s = new Set[list]
+        let topics = [...s]
+        io.emit('returned_lists', {t: topics})
+
+    })
+  });
   
   
   });
