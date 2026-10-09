@@ -131,7 +131,17 @@
 		}
 
 		socket.on("returned_lists", function (data) {
-			console.log(data.t)
+			//console.log(data.t[0][0][0])
+			let list = []
+			for (let i = 1; i < 720; i++) {//loop through the database, extract words. put them in array, make it a set, turn it back to array
+				let entry = data.t[0][0][i]
+				//console.log(entry)
+				let entryWord = entry.Topic
+				list.push(entryWord)
+			}
+			let s = new Set([list])
+        	let topics = [...s]
+			console.log(s)
 		});
 
 

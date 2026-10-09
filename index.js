@@ -74,11 +74,9 @@ io.on("connection", function (socket) {
   socket.on("lists", function (data) {
     db.all('SELECT Topic FROM frenchdb', (err, rows) => {
       if (err) throw err;
-        let list = []
-        list.push(rows)
-        let s = new Set[list]
-        let topics = [...s]
-        io.emit('returned_lists', {t: topics})
+        let wordlist = []
+        wordlist.push(rows)
+        io.emit("returned_lists", {t: wordlist})
 
     })
   });
