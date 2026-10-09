@@ -131,17 +131,23 @@
 		}
 
 		socket.on("returned_lists", function (data) {
-			//console.log(data.t[0][0][0])
-			let list = []
-			for (let i = 1; i < 720; i++) {//loop through the database, extract words. put them in array, make it a set, turn it back to array
-				let entry = data.t[0][0][i]
+			console.log(data.t[0][0])//[0]
+			let s = new Set()
+			for (let i = 0; i < 720; i++) {//loop through the database, extract words. put them in array, make it a set, turn it back to array
+				entry = data.t[0][i]//[0]
 				//console.log(entry)
-				let entryWord = entry.Topic
-				list.push(entryWord)
+				let entryWord = entry.Topic.toString()
+				console.log(entryWord)
+				s.add(entryWord)
 			}
-			let s = new Set([list])
+			
         	let topics = [...s]
-			console.log(s)
+			console.log(topics)
+			//so what i did to get this to work is that a list doesnt go through a set and then to a list anymore. set is made first. everything directly added to the set
+			//then its converted to list
+			//becuase the list was already [] and set added another []
+			//adding toString stopped it becoming a object, which is why they were objects still in the list. 
+			// entry may have been constantly redefined as well. 
 		});
 
 
