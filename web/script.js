@@ -7,7 +7,10 @@
 		let socket = io();
 		let newcolour = false;
 		let wordJSON;
-		let setupTime
+		let setupTime;
+		let topics;
+		let wordListChosen; //boolean flag
+		let chosenWordList;//the player's choice of word list
 		
 		function setup() {
 				createCanvas(2080, 1080);
@@ -45,18 +48,37 @@
 				//console.log(data.w)
 				const DATABASE_LENGTH  = data.w[0].length
 				let qu = getRandomNumber(DATABASE_LENGTH)
-				wordJSON = data.w[0][qu]; 
+				wordJSON = data.w[0][qu]; //question
 				//console.log(wordJSON); //
 				if (wordJSON.EnglishWord == null ||wordJSON.FrenchWord == null) {
 						//those pesky titles and weird null entries
 						wordJSON = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]; //find anohter one. i wanted to delete it but how to do it with getting undefined
 				}
+
 				let abc = getRandomNumber(DATABASE_LENGTH)
 				let def = getRandomNumber(DATABASE_LENGTH)
 				let hij = getRandomNumber(DATABASE_LENGTH)
 				let wrongword1 = data.w[0][abc];
 				let wrongword2 = data.w[0][def];
 				let wrongword3 = data.w[0][hij];
+
+				if (wordListChosen == true){
+					if (wordJSON.Topic !== chosenWordList){
+						wordJSON = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
+					}
+					else if (wrongword1.Topic){
+						wrongword1 = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
+					}
+
+					else if (wrongword2.Topic){
+						wrongword2 = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
+					}
+
+					else if (wrongword3.Topic){
+						wrongword3 = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
+					}
+
+				}
 
 				let randomWrongs = [];
 				let theQuestion = {
@@ -131,12 +153,14 @@
 				s.add(entryWord)
 			}
 			
-        	let topics = [...s]
+        	topics = [...s]
 			//console.log(topics)
 			//so what i did to get this to work is that a list doesnt go through a set and then to a list anymore. set is made first. everything directly added to the set
 			//then its converted to list
 			//adding toString stopped it becoming a object, which is why they were objects still in the list. 
 			// entry may have been constantly redefined as well. 
+
+			//assigning topics from the list to dropdown options
 			let option_ids = ["option0","option1","option2","option3","option4","option5","option6","option7","option8","option9","option10","option11","option12","option13","option14","option15","option16","option17","option18"];
 			for (let i = 0; i < option_ids.length -1; i++) {
 				topicText = document.getElementById(option_ids[i])
@@ -146,8 +170,9 @@
 
 		function chooseWordList(){
 			wordListChosen = true
-			let chosenWordList = (document.getElementById("wordsList").selectedIndex)
-			console.log(chosenWordList)
+			let getWordList = (document.getElementById("wordsList").selectedIndex)
+			chosenWordList = topics[getWordList]
+			//console.log(chosenWordList)
 		}
 
 
