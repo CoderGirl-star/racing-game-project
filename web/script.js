@@ -105,16 +105,6 @@
 						player.speed = 50
 				}
 		}
-				//loop through players 
-				// use server thing (server function) that retruns the id of whoever placed that car. 
-				// adjust x position of that car. 
-
-
-
-				//let defaultColours = ["red", "blue", "green", "magenta"]; //deepPink feels like a premium unlockable colour
-				//let i = Math.floor(Math.random() * defaultColours.length);
-				//c = defaultColours[i];
-
 
 
 		function getPlayerID() {//client side only, works for only 1 client
@@ -131,24 +121,34 @@
 		}
 
 		socket.on("returned_lists", function (data) {
-			console.log(data.t[0][0])//[0]
+			//console.log(data.t[0][0])//[0]
 			let s = new Set()
 			for (let i = 0; i < 720; i++) {//loop through the database, extract words. put them in array, make it a set, turn it back to array
 				entry = data.t[0][i]//[0]
 				//console.log(entry)
 				let entryWord = entry.Topic.toString()
-				console.log(entryWord)
+				//console.log(entryWord)
 				s.add(entryWord)
 			}
 			
         	let topics = [...s]
-			console.log(topics)
+			//console.log(topics)
 			//so what i did to get this to work is that a list doesnt go through a set and then to a list anymore. set is made first. everything directly added to the set
 			//then its converted to list
-			//becuase the list was already [] and set added another []
 			//adding toString stopped it becoming a object, which is why they were objects still in the list. 
 			// entry may have been constantly redefined as well. 
+			let option_ids = ["option0","option1","option2","option3","option4","option5","option6","option7","option8","option9","option10","option11","option12","option13","option14","option15","option16","option17","option18"];
+			for (let i = 0; i < option_ids.length -1; i++) {
+				topicText = document.getElementById(option_ids[i])
+				topicText.innerHTML = topics[i]
+			}
 		});
+
+		function chooseWordList(){
+			wordListChosen = true
+			let chosenWordList = (document.getElementById("wordsList").selectedIndex)
+			console.log(chosenWordList)
+		}
 
 
 		socket.on("id", function (data) {

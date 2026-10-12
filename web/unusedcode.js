@@ -81,3 +81,7 @@
            // <option value="opel">Opel</option>
            // <option value="audi">Audi</option>
    //     </select>
+
+   //let defaultColours = ["red", "blue", "green", "magenta"]; //deepPink feels like a premium unlockable colour
+				//let i = Math.floor(Math.random() * defaultColours.length);
+				//c = defaultColours[i];
