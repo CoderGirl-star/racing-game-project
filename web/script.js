@@ -12,10 +12,11 @@
 		let wordListChosen; //boolean flag
 		let chosenWordList;//the player's choice of word list
 		
-		function setup() {
+		async function setup() {
 				createCanvas(2080, 1080);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
 				background(255);
+				img = await loadImage("map.png")
 				//how to do random from list (from tutorial)
 				//let a = [10, 20, 30, 40, 50];
 				//let i = Math.floor(Math.random() * a.length);
@@ -35,6 +36,7 @@
 				//cars[0].move()
 		//});
 		function draw(){
+			image(img, 0, 0, width, height)
 			frameRate(25)
 			player.move()
 			player.update()
@@ -63,18 +65,18 @@
 				let wrongword3 = data.w[0][hij];
 
 				if (wordListChosen == true){
-					if (wordJSON.Topic !== chosenWordList){
+					while (wordJSON.Topic !== chosenWordList){
 						wordJSON = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
 					}
-					else if (wrongword1.Topic){
+					while (wrongword1.Topic !== chosenWordList){
 						wrongword1 = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
 					}
 
-					else if (wrongword2.Topic){
+					while (wrongword2.Topic !== chosenWordList){
 						wrongword2 = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
 					}
 
-					else if (wrongword3.Topic){
+					while (wrongword3.Topic !== chosenWordList){
 						wrongword3 = data.w[0][Math.floor(Math.random() * DATABASE_LENGTH)]
 					}
 
@@ -95,7 +97,7 @@
 				//-- this is setup for the 4 question buttons ---
 
 				let ids = ["answer1", "answer2", "answer3", "answer4"];
-				let correctIndex = getRandomNumber(ids.length); //random from ids : Pick elemnt to be the correct answer
+				let correctIndex = getRandomNumber(ids.length); //random from ids : Pick element to be the correct answer
 				const correctAnswer = wordJSON.EnglishWord
 
 				let answerText 
