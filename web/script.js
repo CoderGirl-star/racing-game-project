@@ -1,5 +1,6 @@
 
 		let player; //= new Car(50,50,'blue')
+		let img
 		let x = 0
 		let y = 0
 		let pid;
@@ -13,9 +14,9 @@
 		let chosenWordList;//the player's choice of word list
 		
 		async function setup() {
-				createCanvas(2080, 1080);
+				createCanvas(windowWidth -100 ,windowHeight-150);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
-				background(255);
+				//background(255);
 				img = await loadImage("map.png")
 				//how to do random from list (from tutorial)
 				//let a = [10, 20, 30, 40, 50];
@@ -23,7 +24,7 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				player = new Car(x,y,c,100)
+				player = new Car(x,350,c,100)
 				cars.push(player)
 
 		}
@@ -36,9 +37,9 @@
 				//cars[0].move()
 		//});
 		function draw(){
-			image(img, 0, 0, width, height)
 			frameRate(25)
 			player.move()
+			image(img, 0, 0,windowWidth -100 ,windowHeight -150)
 			player.update()
 		}
 

@@ -10,7 +10,6 @@ class Car {
     }
     update() {
         //console.log(this.x,this.y)
-        clear()
         fill(this.colour)
         rect(this.x, this.y, 60, 30)
         fill("black")
@@ -26,6 +25,7 @@ class Car {
             this.x += smoothMove
             if (this.x > windowWidth){
                 this.x = 0
+                this.y = 350
                 this.speed = 100
                 //this.speed = 0
             }
