@@ -5,6 +5,7 @@
 		let y = 0
 		let pid;
 		let cars = [];
+		let checkpoints = []
 		let socket = io();
 		let newcolour = false;
 		let wordJSON;
@@ -24,8 +25,10 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				player = new Car(x,350,c,100)
+				player = new Car(x,500,c,100)
 				cars.push(player)
+				checkpoint1 = new Checkpoint(800,600,false)
+				checkpoints.push(checkpoint1)
 
 		}
 		//socket.on("coord", function (data) {
@@ -40,7 +43,9 @@
 			frameRate(25)
 			player.move()
 			image(img, 0, 0,windowWidth -100 ,windowHeight -150)
+			checkpoint1.draw()
 			player.update()
+			//console.log(player.x,player.y)
 		}
 
 
@@ -184,3 +189,6 @@
 				pid = data.playerID
 		});
 
+		function countdown(){
+			outputText("3")
+		}
