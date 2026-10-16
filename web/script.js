@@ -25,9 +25,9 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				player = new Car(x,500,c,100)
+				player = new Car(x,350,c,100)
 				cars.push(player)
-				checkpoint1 = new Checkpoint(800,600,false)
+				checkpoint1 = new Checkpoint(300,300,500,300,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing
 				checkpoints.push(checkpoint1)
 
 		}

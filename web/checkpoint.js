@@ -1,20 +1,22 @@
 
 class Checkpoint{
-    constructor(position1,position2,completed){
-        this.position1 = position1
-        this.position2 = position2
+    constructor(positionX1,positionX2,positionY1,positionY2,completed){
+        this.positionX1 = positionX1
+        this.positionX2 = positionX2
+        this.positionY1 = positionY1
+        this.positionY2 = positionY2
         this.completed = completed
     }
 
     draw(){
-        //let acceptedPositions = [{},{},{}]
+        let acceptedPositions = [{x1: 800, y1: 400, x2: 800, y2: 600,},{},{}]
         //get random of a list, will be a json. extract x and y assign to position 1 and 2
         //let a = [10, 20, 30, 40, 50];
 		//let i = Math.floor(Math.random() * a.length);
 		//let r = a[i];
-        stroke("lime")
+        stroke("cyan")
         strokeWeight(5)
-        line(this.position1,400, 800,this.position2)//x1,y1,x2,y2
+        line(this.positionX1,this.positionY1,this.positionX2,this.positionY2)//x1,y1,x2,y2
         strokeWeight(1)
         noStroke()
     }

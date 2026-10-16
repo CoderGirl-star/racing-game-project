@@ -25,7 +25,7 @@ class Car {
             this.x += smoothMove
             if (this.x > windowWidth){
                 this.x = 0
-                this.y = 500//350
+                this.y = 350 //500 for college, 350 home
                 this.speed = 100
                 //this.speed = 0
             }
