@@ -24,11 +24,15 @@ class Checkpoint{
     collision(){
         let checkpointLength = dist(this.positionX1,this.positionY1,this.positionX2,this.positionY2)
         if (dist(player.x,player.y, this.positionY1, this.positionY2) < checkpointLength){
-            player.speed = 0
-            let contents = document.getElementsByClassName("container")[0]
-            contents.removeAttribute("hidden");//unhides the container
-            //console.log(checkpointLength)//200
-            //console.log(player.x,player.y, this.positionY1, this.positionY2)
+            if (this.completed == false){
+                player.speed = 2.5
+                let contents = document.getElementsByClassName("container")[0]
+                contents.removeAttribute("hidden");//unhides the container
+                getQuestion2()
+                this.completed = true
+                //console.log(checkpointLength)//200
+                //console.log(player.x,player.y, this.positionY1, this.positionY2)
+            }
         }
     }
 }

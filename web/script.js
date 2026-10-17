@@ -130,11 +130,11 @@
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
 						//outputText("you did it!")
-						player.speed = 500//350
+						player.speed = 350//350
 						document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 				}else{
 						//outputText("wrong answer")
-						player.speed = 200//50
+						player.speed = 50//50
 						document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 				}
 		}
