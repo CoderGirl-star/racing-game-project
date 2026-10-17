@@ -14,7 +14,7 @@ class Checkpoint{
         //let a = [10, 20, 30, 40, 50];
 		//let i = Math.floor(Math.random() * a.length);
 		//let r = a[i];
-        stroke("cyan")
+        stroke("lime")
         strokeWeight(5)
         line(this.positionX1,this.positionY1,this.positionX2,this.positionY2)//x1,y1,x2,y2
         strokeWeight(1)
@@ -22,8 +22,13 @@ class Checkpoint{
     }
 
     collision(){
-        if (dist(player.x,player.y, this.x, this.y) < 60){
-            //do something
+        let checkpointLength = dist(this.positionX1,this.positionY1,this.positionX2,this.positionY2)
+        if (dist(player.x,player.y, this.positionY1, this.positionY2) < checkpointLength){
+            player.speed = 0
+            let contents = document.getElementsByClassName("container")[0]
+            contents.removeAttribute("hidden");//unhides the container
+            //console.log(checkpointLength)//200
+            //console.log(player.x,player.y, this.positionY1, this.positionY2)
         }
     }
 }

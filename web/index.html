@@ -15,12 +15,14 @@
     </head>
 
     <body>
-        <button id="question" onclick="getQuestion2()">get question</button>
-        <button id="answer1" onclick="getAnswer(this.id)"></button>
-        <button id="answer2" onclick="getAnswer(this.id)"></button>
-        <button id="answer3" onclick="getAnswer(this.id)"></button>
-        <button id="answer4" onclick="getAnswer(this.id)"></button>
-        <div id="questionText"></div>
+        <div hidden=true class="container">
+            <button id="question" onclick="getQuestion2()">get question</button>
+            <button id="answer1" onclick="getAnswer(this.id)"></button>
+            <button id="answer2" onclick="getAnswer(this.id)"></button>
+            <button id="answer3" onclick="getAnswer(this.id)"></button>
+            <button id="answer4" onclick="getAnswer(this.id)"></button>
+            <div id="questionText"></div>
+        </div>
         <div id = "colourCarMenu">
             <label> Choose car colour: </label>
             <input type="color" id ="carColour"/>

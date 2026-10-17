@@ -45,6 +45,7 @@
 			image(img, 0, 0,windowWidth -100 ,windowHeight -150)
 			checkpoint1.draw()
 			player.update()
+			checkpoint1.collision()
 			//console.log(player.x,player.y)
 		}
 
@@ -128,11 +129,13 @@
 				//console.log(clicked)// IT WORKS!!!
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
-						outputText("you did it!")
-						player.speed = 250
+						//outputText("you did it!")
+						player.speed = 500//350
+						document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 				}else{
-						outputText("wrong answer brotato")
-						player.speed = 50
+						//outputText("wrong answer")
+						player.speed = 200//50
+						document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 				}
 		}
 
