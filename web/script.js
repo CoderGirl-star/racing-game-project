@@ -27,7 +27,7 @@
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 
 				player = new Car(0,0.65 * height ,c,100)//0,350
 				cars.push(player)
-				checkpoint1 = new Checkpoint(300,300,500,300,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing
+				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing
 				checkpoints.push(checkpoint1)
 
 		}
@@ -40,15 +40,15 @@
 				//cars[0].move()
 		//});
 		function draw(){
-			if (mouseControlsEnabled == true){
-				console.log(mouseX,mouseY)
-				player.x = mouseX
-				player.y = mouseY + 250
-				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
-				checkpoint1.draw()
-				player.update()
-				checkpoint1.collision()
-			}else{
+			//if (mouseControlsEnabled == true){
+				//console.log(mouseX,mouseY)
+				//player.x = mouseX
+				//player.y = mouseY + 250
+				//image(img, 0, 0,windowWidth -100 ,windowHeight -150)
+				//checkpoint1.draw()
+				//player.update()
+				//checkpoint1.collision()
+			//}else{
 				frameRate(25)
 				player.move()
 				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
@@ -57,7 +57,7 @@
 				checkpoint1.collision()
 				//console.log(dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY2))
 				//console.log(player.x,player.y)
-			}
+			//}
 		}
 
 
@@ -143,17 +143,17 @@
 						outputText("you did it!")
 						player.speed = 250//250
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
-						if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
-							mouseControlsEnabled = true
-						}
+						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
+							//mouseControlsEnabled = true
+						//}
 
 				}else{
 						outputText("wrong answer")
 						player.speed = 50//50
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
-						if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
-							mouseControlsEnabled = true
-						}
+						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
+							//mouseControlsEnabled = true
+						//}
 				}
 		}
 

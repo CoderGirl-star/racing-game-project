@@ -25,12 +25,12 @@ class Car {
             this.x += smoothMove
             if (this.x > windowWidth){
                 this.x = 0
-                this.y = 350 //500 for college, 350 home
+                this.y = 0.65 * height //the new ratio, 65% of screen height
                 this.speed = 100
                 for (let i = 0; i < checkpoints.length; i++) {
                     checkpoints[i].completed = false
                 }
-                mouseControlsEnabled = false
+                //mouseControlsEnabled = false
                 //this.speed = 0
             }
     }

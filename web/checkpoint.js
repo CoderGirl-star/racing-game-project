@@ -23,12 +23,12 @@ class Checkpoint{
 
     collision(){
         let checkpointLength = dist(this.positionX1,this.positionY1,this.positionX2,this.positionY2)
-        mouseControlsEnabled = false
+        //mouseControlsEnabled = false
         if (dist(player.x,player.y, this.positionY1, this.positionY2) < checkpointLength){
             if (this.completed == false){
-                player.speed = 2.5
-                let contents = document.getElementsByClassName("container")[0]
-                contents.removeAttribute("hidden");//unhides the container
+                player.speed = 0
+                //let contents = document.getElementsByClassName("container")[0]
+                //contents.removeAttribute("hidden");//unhides the container
                 getQuestion2()
                 this.completed = true
                 //console.log(checkpointLength)//200
