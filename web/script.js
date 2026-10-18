@@ -1,4 +1,3 @@
-
 		let player; //= new Car(50,50,'blue')
 		let img
 		let x = 0
@@ -9,11 +8,11 @@
 		let socket = io();
 		let newcolour = false;
 		let wordJSON;
-		let setupTime;
 		let topics;
 		let wordListChosen; //boolean flag
 		let chosenWordList;//the player's choice of word list
-		
+		let mouseControlsEnabled = false
+
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
@@ -25,7 +24,8 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				player = new Car(x,350,c,100)
+				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 
+				player = new Car(0,0.65 * height ,c,100)//0,350
 				cars.push(player)
 				checkpoint1 = new Checkpoint(300,300,500,300,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing
 				checkpoints.push(checkpoint1)
@@ -40,13 +40,24 @@
 				//cars[0].move()
 		//});
 		function draw(){
-			frameRate(25)
-			player.move()
-			image(img, 0, 0,windowWidth -100 ,windowHeight -150)
-			checkpoint1.draw()
-			player.update()
-			checkpoint1.collision()
-			//console.log(player.x,player.y)
+			if (mouseControlsEnabled == true){
+				console.log(mouseX,mouseY)
+				player.x = mouseX
+				player.y = mouseY + 250
+				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
+				checkpoint1.draw()
+				player.update()
+				checkpoint1.collision()
+			}else{
+				frameRate(25)
+				player.move()
+				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
+				checkpoint1.draw()
+				player.update()
+				checkpoint1.collision()
+				//console.log(dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY2))
+				//console.log(player.x,player.y)
+			}
 		}
 
 
@@ -129,13 +140,20 @@
 				//console.log(clicked)// IT WORKS!!!
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
-						//outputText("you did it!")
-						player.speed = 350//350
-						document.getElementsByClassName("container")[0].setAttribute("hidden","true")
+						outputText("you did it!")
+						player.speed = 250//250
+						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
+						if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
+							mouseControlsEnabled = true
+						}
+
 				}else{
-						//outputText("wrong answer")
+						outputText("wrong answer")
 						player.speed = 50//50
-						document.getElementsByClassName("container")[0].setAttribute("hidden","true")
+						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
+						if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
+							mouseControlsEnabled = true
+						}
 				}
 		}
 
@@ -192,6 +210,13 @@
 				pid = data.playerID
 		});
 
-		function countdown(){
+		function countdown(){//use milis
+			player.speed = 0
 			outputText("3")
+			outputText("2")
+			outputText("1")
+			player.speed = 100
 		}
+
+		//function windowResized() {}
+ 		//resizeCanvas(windowWidth, windowHeight);

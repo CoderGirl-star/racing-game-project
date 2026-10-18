@@ -27,6 +27,10 @@ class Car {
                 this.x = 0
                 this.y = 350 //500 for college, 350 home
                 this.speed = 100
+                for (let i = 0; i < checkpoints.length; i++) {
+                    checkpoints[i].completed = false
+                }
+                mouseControlsEnabled = false
                 //this.speed = 0
             }
     }
