@@ -9,9 +9,12 @@
 		let newcolour = false;
 		let wordJSON;
 		let topics;
+		let carPositionFactor;
+		let xPositionFactor;
+		let yPositionFactor;
 		let wordListChosen; //boolean flag
 		let chosenWordList;//the player's choice of word list
-		let mouseControlsEnabled = false
+		//let mouseControlsEnabled = false
 
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
@@ -24,10 +27,16 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 
-				player = new Car(0,0.65 * height ,c,100)//0,350
+				carPositionFactor = 350/height + 0.15//min()  floor() rounds to a whole integer we dont want that
+				xPositionFactor = 300/width +0.081
+				yPositionFactor = 500/height +0.1
+				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
+				console.log(xPositionFactor,yPositionFactor)
+				//346 219 difference, use min()
+				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
-				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing
+				checkpoint1 = new Checkpoint(xPositionFactor*width,yPositionFactor*height,xPositionFactor*width,yPositionFactor*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
+				//0.21*width,0.5*height,0.34*width,0.5*height
 				checkpoints.push(checkpoint1)
 
 		}
