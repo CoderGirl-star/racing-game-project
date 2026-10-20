@@ -28,16 +28,19 @@
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
 				carPositionFactor = 350/height + 0.15//min()  floor() rounds to a whole integer we dont want that
-				xPositionFactor = 300/width +0.081
-				yPositionFactor = 500/height +0.1
+				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
-				console.log(xPositionFactor,yPositionFactor)
+				//console.log(xPositionFactor,yPositionFactor)
 				//346 219 difference, use min()
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
-				checkpoint1 = new Checkpoint(xPositionFactor*width,yPositionFactor*height,xPositionFactor*width,yPositionFactor*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
+				checkpoint1 = new Checkpoint(0,0,0,0,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
+				checkpoint2 = new Checkpoint(0,0,0,0,false)//setup values
 				//0.21*width,0.5*height,0.34*width,0.5*height
+				//xPositionFactor*width,yPositionFactor*height,xPositionFactor*width,yPositionFactor*height
 				checkpoints.push(checkpoint1)
+				checkpoints.push(checkpoint2)
+
 
 		}
 		//socket.on("coord", function (data) {
@@ -62,6 +65,7 @@
 				player.move()
 				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
 				checkpoint1.draw()
+				checkpoint2.draw()
 				player.update()
 				checkpoint1.collision()
 				//console.log(dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY2))
@@ -167,10 +171,6 @@
 		}
 
 
-		function getPlayerID() {//client side only, works for only 1 client
-				socket.emit("pid")
-		}
-
 		function changeColour(){
 			let chosenColour = document.getElementById("carColour").value
 			player.colour = chosenColour
@@ -212,20 +212,3 @@
 			chosenWordList = topics[getWordList]
 			//console.log(chosenWordList)
 		}
-
-
-		socket.on("id", function (data) {
-				//console.log(data)
-				pid = data.playerID
-		});
-
-		function countdown(){//use milis
-			player.speed = 0
-			outputText("3")
-			outputText("2")
-			outputText("1")
-			player.speed = 100
-		}
-
-		//function windowResized() {}
- 		//resizeCanvas(windowWidth, windowHeight);
