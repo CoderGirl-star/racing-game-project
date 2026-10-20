@@ -27,15 +27,15 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				carPositionFactor = 350/height + 0.15//min()  floor() rounds to a whole integer we dont want that
+				carPositionFactor = 350/height //+ 0.15//min()  floor() rounds to a whole integer we dont want that
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
 				//346 219 difference, use min()
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
-				checkpoint1 = new Checkpoint(0,0,0,0,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
-				checkpoint2 = new Checkpoint(0,0,0,0,false)//setup values
+				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
+				checkpoint2 = new Checkpoint(0.4*width,0.9*height,0.2*width,0.9*height,false)//setup values
 				//0.21*width,0.5*height,0.34*width,0.5*height
 				//xPositionFactor*width,yPositionFactor*height,xPositionFactor*width,yPositionFactor*height
 				checkpoints.push(checkpoint1)
@@ -68,6 +68,7 @@
 				checkpoint2.draw()
 				player.update()
 				checkpoint1.collision()
+				checkpoint2.collision()
 				//console.log(dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY2))
 				//console.log(player.x,player.y)
 			//}
@@ -211,4 +212,8 @@
 			let getWordList = (document.getElementById("wordsList").selectedIndex)
 			chosenWordList = topics[getWordList]
 			//console.log(chosenWordList)
+		}
+
+		function mouseClicked(){
+			console.log(mouseX,mouseY)
 		}

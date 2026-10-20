@@ -30,6 +30,7 @@ class Car {
                 for (let i = 0; i < checkpoints.length; i++) {
                     checkpoints[i].completed = false
                 }
+                positioning()
                 //mouseControlsEnabled = false
                 //this.speed = 0
             }
