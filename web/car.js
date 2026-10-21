@@ -21,7 +21,6 @@ class Car {
 
     move(){
             let smoothMove = lerp(0,this.speed,0.1)
-            //console.log(smoothMove)
             this.x += smoothMove
             if (this.x > windowWidth){
                 this.x = 0
@@ -34,6 +33,39 @@ class Car {
                 //mouseControlsEnabled = false
                 //this.speed = 0
             }
+    }
+
+    moveUp(){
+        let smoothMove = lerp(0,this.speed,0.1)
+            this.y -= smoothMove
+            if (this.y > windowHeight){
+                this.y = 0
+                this.speed = 100
+                //this.speed = 0
+            }
+    }
+
+    moveDown(){
+            let smoothMove = lerp(0,this.speed,0.1)
+            this.y += smoothMove
+            if (this.y > windowWidth){
+                this.y = 0
+                this.speed = 100
+                //this.speed = 0
+            }
+    }
+
+
+    moveLeft(){
+            //translate(this.x,this.y)
+            let smoothMove = lerp(0,this.speed,0.1)
+            this.x -= smoothMove
+            if (this.x > windowWidth){
+                this.x = 0
+                this.speed = 100
+                //this.speed = 0
+            }
+            //rotate(90)
     }
 
     

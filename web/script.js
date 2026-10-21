@@ -2,6 +2,8 @@
 		let img
 		let x = 0
 		let y = 0
+		let dx;
+		let dy;
 		let pid;
 		let cars = [];
 		let checkpoints = []
@@ -27,7 +29,7 @@
 				//let r = a[i];
 				c = "blue";
 				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
-				carPositionFactor = 350/height //+ 0.15//min()  floor() rounds to a whole integer we dont want that
+				carPositionFactor = 350/height+ 0.15//min()  floor() rounds to a whole integer we dont want that
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
@@ -35,8 +37,11 @@
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
 				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
-				checkpoint2 = new Checkpoint(0.4*width,0.9*height,0.2*width,0.9*height,false)//setup values
-				//0.21*width,0.5*height,0.34*width,0.5*height
+				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false)//setup values
+				//0.4*width,0.9*height,0.2*width,0.9*height
+				//0.85*width,0.9*height,0.25*width,0.6*height
+				//0.9*width,0.9*height,0.2*width,0.52*height
+				//0.9*width,0.9*height,0.15*width,0.4*height
 				//xPositionFactor*width,yPositionFactor*height,xPositionFactor*width,yPositionFactor*height
 				checkpoints.push(checkpoint1)
 				checkpoints.push(checkpoint2)
@@ -54,12 +59,12 @@
 		function draw(){
 			//if (mouseControlsEnabled == true){
 				//console.log(mouseX,mouseY)
-				//player.x = mouseX
-				//player.y = mouseY + 250
 				//image(img, 0, 0,windowWidth -100 ,windowHeight -150)
 				//checkpoint1.draw()
+				//checkpoint2.draw()
 				//player.update()
 				//checkpoint1.collision()
+				//checkpoint2.collision()
 			//}else{
 				frameRate(25)
 				player.move()
@@ -155,7 +160,7 @@
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
 						outputText("you did it!")
-						player.speed = 250//250
+						player.speed = 200
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
 							//mouseControlsEnabled = true
@@ -163,7 +168,7 @@
 
 				}else{
 						outputText("wrong answer")
-						player.speed = 50//50
+						player.speed = 75
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
 							//mouseControlsEnabled = true
@@ -214,6 +219,32 @@
 			//console.log(chosenWordList)
 		}
 
-		function mouseClicked(){
+		//function mouseClicked(){
 			console.log(mouseX,mouseY)
-		}
+		//}
+
+function keyPressed() {
+	if (keyCode === 38) {//up
+        player.moveUp()
+        player.update()
+        return false;
+    }
+	if (keyCode === 37) {//<---
+        player.moveLeft()
+        player.update()
+        return false;
+    }
+    if (keyCode === 38) {//up
+        player.moveUp()
+        player.update()
+        return false;
+    }
+    if (keyCode === 40) {//down
+        player.moveDown()
+        player.update()
+        return false;
+    }
+
+	
+}
+	

@@ -20,13 +20,16 @@ class Checkpoint{
         //let checkpointLength = dist(this.positionX1,this.positionY1,this.positionX2,this.positionY2)
         //mouseControlsEnabled = false
         let hitbox = min(dist(player.x,player.y, this.positionX1, this.positionY1),dist(player.x,player.y, this.positionX2, this.positionY2))//is the first or second coords closer
-        if (hitbox < 100){
+        if (hitbox < 100){//arbitrary number - a small number so it stops closer to the checkpoint
             if (this.completed == false){
                 player.speed = 0
                 //let contents = document.getElementsByClassName("container")[0]
                 //contents.removeAttribute("hidden");//unhides the container
                 getQuestion2()
                 this.completed = true
+                if (dist(player.x,player.y,this.positionX1, this.positionY1) > 300){
+                    player.speed = 100
+                }
                 //console.log(checkpointLength)//200
                 //console.log(player.x,player.y, this.positionY1, this.positionY2)
             }
