@@ -28,7 +28,6 @@
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				c = "blue";
-				//socket.emit("newCo", { x: 0, y: 0, c: c, s: 0 });
 				carPositionFactor = 350/height+ 0.15//min()  floor() rounds to a whole integer we dont want that
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
@@ -226,22 +225,18 @@
 function keyPressed() {
 	if (keyCode === 38) {//up
         player.moveUp()
-        player.update()
         return false;
     }
 	if (keyCode === 37) {//<---
         player.moveLeft()
-        player.update()
         return false;
     }
     if (keyCode === 38) {//up
         player.moveUp()
-        player.update()
         return false;
     }
     if (keyCode === 40) {//down
         player.moveDown()
-        player.update()
         return false;
     }
 

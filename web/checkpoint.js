@@ -27,7 +27,7 @@ class Checkpoint{
                 //contents.removeAttribute("hidden");//unhides the container
                 getQuestion2()
                 this.completed = true
-                if (dist(player.x,player.y,this.positionX1, this.positionY1) > 300){
+                if (dist(player.x,player.y,this.positionX1, this.positionY1) > 250){
                     player.speed = 100
                 }
                 //console.log(checkpointLength)//200
