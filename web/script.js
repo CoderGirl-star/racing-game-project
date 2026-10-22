@@ -17,6 +17,7 @@
 		let wordListChosen; //boolean flag
 		let chosenWordList;//the player's choice of word list
 		//let mouseControlsEnabled = false
+		let arrowMode = false
 
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
@@ -56,15 +57,6 @@
 				//cars[0].move()
 		//});
 		function draw(){
-			//if (mouseControlsEnabled == true){
-				//console.log(mouseX,mouseY)
-				//image(img, 0, 0,windowWidth -100 ,windowHeight -150)
-				//checkpoint1.draw()
-				//checkpoint2.draw()
-				//player.update()
-				//checkpoint1.collision()
-				//checkpoint2.collision()
-			//}else{
 				frameRate(25)
 				player.move()
 				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
@@ -73,9 +65,6 @@
 				player.update()
 				checkpoint1.collision()
 				checkpoint2.collision()
-				//console.log(dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY2))
-				//console.log(player.x,player.y)
-			//}
 		}
 
 
@@ -158,7 +147,7 @@
 				//console.log(clicked)// IT WORKS!!!
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
-						outputText("you did it!")
+						alert("you did it!")
 						player.speed = 200
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
@@ -166,7 +155,7 @@
 						//}
 
 				}else{
-						outputText("wrong answer")
+						alert("wrong answer")
 						player.speed = 75
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
@@ -218,9 +207,9 @@
 			//console.log(chosenWordList)
 		}
 
-		//function mouseClicked(){
-			console.log(mouseX,mouseY)
-		//}
+		function mouseClicked(){
+			//console.log(mouseX,mouseY)
+		}
 
 function keyPressed() {
 	if (keyCode === 38) {//up
@@ -240,6 +229,11 @@ function keyPressed() {
         return false;
     }
 
+	if (keyCode === 187) {//+=
+        player.speed = 0
+		arrowMode = true
+        return false;
+    }
 	
 }
 	

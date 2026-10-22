@@ -1,6 +1,3 @@
-
-
-
 class Car {
     constructor(x, y, colour,speed) {
         this.x = x
@@ -20,64 +17,101 @@ class Car {
 
 
     move(){
-            let smoothMove = lerp(0,this.speed,0.1)
-            this.x += smoothMove
-            if (this.x > windowWidth){
+            //if (arrowMode == true){
+                //this.x + 10
+                //if (this.x > windowWidth){
+                //this.x = 0
+                //this.y = carPositionFactor * height 
+                //this.speed = 100
+                //for (let i = 0; i < checkpoints.length; i++) {
+                    //checkpoints[i].completed = false
+                //}
+                //positioning()
+            //}else{
+                let smoothMove = lerp(0,this.speed,0.1)
+                this.x += smoothMove
+                if (this.x > windowWidth){
+                    this.x = 0
+                    this.y = carPositionFactor * height 
+                    this.speed = 100
+                    for (let i = 0; i < checkpoints.length; i++) {
+                        checkpoints[i].completed = false
+                    }
+                    positioning()
+                    //mouseControlsEnabled = false
+            }
+            //}
+    }
+
+
+    moveUp(){
+        if (arrowMode == true){
+            this.y -= 10
+            if (this.y > windowHeight){
                 this.x = 0
-                this.y = carPositionFactor * height 
+                this.y = carPositionFactor * height
                 this.speed = 100
+                arrowMode = false
                 for (let i = 0; i < checkpoints.length; i++) {
                     checkpoints[i].completed = false
                 }
                 positioning()
-                //mouseControlsEnabled = false
-                //this.speed = 0
             }
-    }
-
-    moveUp(){
-        let smoothMove = lerp(0,this.speed,0.1)
+        }else{//without arrow mode
+            let smoothMove = lerp(0,this.speed,0.1)
             this.y -= smoothMove
             if (this.y > windowHeight){
-                this.y = 0
+                this.y = carPositionFactor * height 
                 this.speed = 100
-                //this.speed = 0
+
             }
+        }
     }
 
     moveDown(){
+        if (arrowMode == true){
+            this.y += 10
+            if (this.y > windowHeight){
+                this.y = carPositionFactor * height
+                this.speed = 100
+                arrowMode = false
+                for (let i = 0; i < checkpoints.length; i++) {
+                    checkpoints[i].completed = false
+                }
+                positioning()
+            }
+        }else{//without arrow mode
             let smoothMove = lerp(0,this.speed,0.1)
             this.y += smoothMove
             if (this.y > windowWidth){
-                this.y = 0
+                this.y = carPositionFactor * height 
                 this.speed = 100
-                //this.speed = 0
             }
+        }
     }
 
 
     moveLeft(){
-            //translate(this.x,this.y)
+        if (arrowMode == true){
+            this.x -= 10
+            if (this.x > windowWidth){
+                this.x = 0
+                this.speed = 100
+                arrowMode = false
+                for (let i = 0; i < checkpoints.length; i++) {
+                    checkpoints[i].completed = false
+                }
+                positioning()
+            }
+        }else{//without arrow mode
             let smoothMove = lerp(0,this.speed,0.1)
             this.x -= smoothMove
             if (this.x > windowWidth){
                 this.x = 0
                 this.speed = 100
-                //this.speed = 0
             }
-            //rotate(90)
+        }
     }
 
     
 }
-
-//let startTime = millis() / 1000//marks when the loop starts in seconds
-            //for (let i = 0; i < 10; i++) {
-                //if (startTime == startTime + 1000){//every second??
-                    //let accelerationTime = millis() - setupTime
-                    //console.log(accelerationTime)
-                    
-                    //startTime = millis()
-               // }
-                
-            //}

@@ -1,15 +1,14 @@
 .container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  padding: 10px;
+  padding: 5px;
   border-style: solid;
   border-color: black;
   border-width: 2.5px;
   background-color: rgba(233, 232, 234, 0.5)
   grid-template-areas
     'questionText questionText questionText questionText'
-    'answer1 answer2 answer3 answer4'
-    'question';
+    'answer1 answer2 answer3 answer4';
 }
 
 body{
@@ -17,26 +16,36 @@ body{
     min-height:100vh;
 }
 
-
-#question{
-    box-shadow: 2.5px 2.5px 8px pink, 5px 5px 8px #fbfbb7, 10px 10px 8px #b8ffb8, 13px 13px 8px #a9fefe, 20px 20px 8px #e5a9fe;
-    color: dodgerblue;
-    background-color: pink;
-}
 #questionText{
-    font-weight: bold;
-    color: dodgerblue;
+    font-weight: 777;
+    color: royalblue;
 }
 
 #answer1{
-    background-color: blue;
+    background-color: #AC0213;
+     padding: 15px;
+     border-radius: 20px;
+     color: whitesmoke;
+     font-weight: 777;
 }
 #answer2{
-    background-color: lime
+    background-color: #c50216;
+     padding: 15px;
+     border-radius: 20px;
+     color: whitesmoke;
+     font-weight: 777;
 }
 #answer3{
-    background-color: darkviolet
+    background-color: #de0319;
+     padding: 15px;
+     border-radius: 20px;
+     color: whitesmoke;
+     font-weight: 777;
 }
 #answer4{
-    background-color: red
+    background-color: #f8031b;
+    padding: 15px;
+    border-radius: 20px;
+    color: whitesmoke;
+    font-weight: 777;
 }

@@ -1,18 +1,6 @@
-//let img
-//function setup() {
-    //image(img, 0, 0, width, height)
-
-//}
-
-    //img = loadImage("map.jpg")
-
 function outputText(txt) {
     // add txt to a new paragraph
-    let newPara = document.createElement("p")
-    newPara.innerHTML = txt
-    questionText.appendChild(newPara)
-    newPara.scrollIntoView()
-    
+    questionText.innerHTML = txt
 }
 
 function getRandomNumber(length){
@@ -45,6 +33,10 @@ function positioning() {
             checkpoints[i].positionX2 = xPositionFactor*width
             checkpoints[i].positionY1 = yPositionFactor*height
             checkpoints[i].positionY2 = yPositionFactor*height
+        }
+        image(img, 0, 0,windowWidth -100 ,windowHeight -150)
+        for (let i = 0; i < checkpoints.length -1, i++;){
+            checkpoints[i].draw()
         }
 }
 //function windowResized() {}

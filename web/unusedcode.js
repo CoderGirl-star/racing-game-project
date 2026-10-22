@@ -85,3 +85,7 @@
    //let defaultColours = ["red", "blue", "green", "magenta"]; //deepPink feels like a premium unlockable colour
 				//let i = Math.floor(Math.random() * defaultColours.length);
 				//c = defaultColours[i];
+
+
+//css:
+//    width: fit-content; makes buttons fit the words. but starts as circles
