@@ -29,7 +29,7 @@
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				c = "blue";
-				carPositionFactor = 350/height+ 0.15//min()  floor() rounds to a whole integer we dont want that
+				carPositionFactor = 350/height//+ 0.15//min()  floor() rounds to a whole integer we dont want that
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
@@ -147,7 +147,7 @@
 				//console.log(clicked)// IT WORKS!!!
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
-						alert("you did it!")
+						//alert("you did it!")
 						player.speed = 200
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
@@ -155,7 +155,7 @@
 						//}
 
 				}else{
-						alert("wrong answer")
+						//alert("wrong answer")
 						player.speed = 75
 						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
 						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){

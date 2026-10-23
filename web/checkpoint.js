@@ -27,8 +27,9 @@ class Checkpoint{
                 //contents.removeAttribute("hidden");//unhides the container
                 getQuestion2()
                 this.completed = true
-                if (dist(player.x,player.y,this.positionX1, this.positionY1) > 250){
+                if (dist(player.x,player.y,this.positionX1, this.positionY1) > 250){//surprisingly convient way to exit arrow mode
                     player.speed = 100
+                    arrowMode = false
                 }
                 //console.log(checkpointLength)//200
                 //console.log(player.x,player.y, this.positionY1, this.positionY2)
