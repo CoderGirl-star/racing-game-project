@@ -1,5 +1,6 @@
 		let player; //= new Car(50,50,'blue')
 		let img
+		let img2
 		let x = 0
 		let y = 0
 		let dx;
@@ -18,31 +19,28 @@
 		let chosenWordList;//the player's choice of word list
 		//let mouseControlsEnabled = false
 		let arrowMode = false
+		let carDirection = 1
 
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
 				//background(255);
 				img = await loadImage("map.png")
+				img2 = await loadImage("map2.png")
 				//how to do random from list (from tutorial)
 				//let a = [10, 20, 30, 40, 50];
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				c = "blue";
-				carPositionFactor = 350/height//+ 0.15//min()  floor() rounds to a whole integer we dont want that
+				carPositionFactor = 350/height+ 0.1//min()  floor() rounds to a whole integer we dont want that
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
 				//346 219 difference, use min()
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
-				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
-				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false)//setup values
-				//0.4*width,0.9*height,0.2*width,0.9*height
-				//0.85*width,0.9*height,0.25*width,0.6*height
-				//0.9*width,0.9*height,0.2*width,0.52*height
-				//0.9*width,0.9*height,0.15*width,0.4*height
-				//xPositionFactor*width,yPositionFactor*height,xPositionFactor*width,yPositionFactor*height
+				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,right)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
+				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,up)//setup values
 				checkpoints.push(checkpoint1)
 				checkpoints.push(checkpoint2)
 
@@ -58,8 +56,20 @@
 		//});
 		function draw(){
 				frameRate(25)
-				player.move()
-				image(img, 0, 0,windowWidth -100 ,windowHeight -150)
+				if (carDirection == 1){
+					player.move()
+				}
+				else if (carDirection == 2){
+					player.moveLeft()
+				}
+				else if (carDirection == 3){
+					player.moveUp()
+				}
+				else if (carDirection == 4){
+					player.moveDown()
+				}
+
+				image(img2, 0, 0,windowWidth -100 ,windowHeight -150)
 				checkpoint1.draw()
 				checkpoint2.draw()
 				player.update()
@@ -148,19 +158,52 @@
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
 						//alert("you did it!")
-						player.speed = 200
-						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
-						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
-							//mouseControlsEnabled = true
-						//}
+						for (let i = 0; i < checkpoints.length -1, i++;){
+						if (checkpoints[i].direction == right){//1
+							if (player.x )//near to x1 or x2 of checkpoints[i]
+							carDirection = 1
+							player.speed = 200
+						}
+						else if (checkpoints[i].direction == left){//2
+							carDirection = 2
+							player.speed = 200
+							
+						}
+						else if (checkpoints[i].direction == up){//3
+							carDirection = 3
+							player.speed = 200
+
+						}
+						else if (checkpoints[i].direction == down){//4
+							carDirection = 4
+							player.speed = 200
+
+						}
+					}
 
 				}else{
 						//alert("wrong answer")
-						player.speed = 75
-						//document.getElementsByClassName("container")[0].setAttribute("hidden","true")
-						//if (dist(player.x,player.y, checkpoint1.positionX1, checkpoint1.positionY1) > 200){
-							//mouseControlsEnabled = true
-						//}
+						if (checkpoints[i].direction == right){//1
+							carDirection = 1
+							player.speed = 75
+						}
+						else if (checkpoints[i].direction == left){//2
+							carDirection = 2
+							player.speed = 75
+							
+						}
+						else if (checkpoints[i].direction == up){//3
+							carDirection = 3
+							player.speed = 75
+
+						}
+						else if (checkpoints[i].direction == down){//4
+							carDirection = 4
+							player.speed = 75
+
+						}
+						
+						
 				}
 		}
 

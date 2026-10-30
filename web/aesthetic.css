@@ -1,5 +1,5 @@
 .container {
-  display: grid;
+  display: none;
   grid-template-columns: auto auto auto auto;
   padding: 5px;
   border-style: solid;
@@ -48,4 +48,8 @@ body{
     border-radius: 20px;
     color: whitesmoke;
     font-weight: 777;
+}
+
+#selectWordList{
+    display: none;
 }
