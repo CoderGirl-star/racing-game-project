@@ -20,6 +20,7 @@
 		//let mouseControlsEnabled = false
 		let arrowMode = false
 		let carDirection = 1
+		let hitbox2
 
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
@@ -39,8 +40,8 @@
 				//346 219 difference, use min()
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
-				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,right)//800,400,800,600 for college but 300, 300 500, 300 good for testing 
-				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,up)//setup values
+				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,"right")//800,400,800,600 for college but 300, 300 500, 300 good for testing 
+				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"up")//setup values
 				checkpoints.push(checkpoint1)
 				checkpoints.push(checkpoint2)
 
@@ -158,51 +159,70 @@
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
 						//alert("you did it!")
-						for (let i = 0; i < checkpoints.length -1, i++;){
-						if (checkpoints[i].direction == right){//1
-							if (player.x )//near to x1 or x2 of checkpoints[i]
-							carDirection = 1
-							player.speed = 200
+						console.log(checkpoints)
+						for (let i = 0; i < checkpoints.length, i++;){
+							hitbox2 = min(dist(player.x,player.y, checkpoints[i].positionX1, checkpoints[i].positionY1),dist(player.x,player.y, checkpoints[i].positionX2, checkpoints[i].positionY2))
+							console.log(hitbox2)
+							if (checkpoints[i].direction == "right"){//1
+								if (hitbox2 <=100){
+									carDirection = 1
+									player.speed = 200
+								}
+							}
+							else if (checkpoints[i].direction == "left"){//2
+							if (hitbox2 <=100){
+								carDirection = 2
+								player.speed = 200
+							}
 						}
-						else if (checkpoints[i].direction == left){//2
-							carDirection = 2
-							player.speed = 200
-							
-						}
-						else if (checkpoints[i].direction == up){//3
-							carDirection = 3
-							player.speed = 200
+							else if (checkpoints[i].direction == "up"){//3
+							if (hitbox2 <=100){
+								carDirection = 3
+								player.speed = 200
+							}
 
 						}
-						else if (checkpoints[i].direction == down){//4
-							carDirection = 4
-							player.speed = 200
+							else if (checkpoints[i].direction == "down"){//4
+								if (hitbox2 <=100){
+								carDirection = 4
+								player.speed = 200
+							}
 
 						}
 					}
 
 				}else{
 						//alert("wrong answer")
-						if (checkpoints[i].direction == right){//1
-							carDirection = 1
-							player.speed = 75
+						for (let i = 0; i < checkpoints.length, i++;){
+							hitbox2 = min(dist(player.x,player.y, checkpoints[i].positionX1, checkpoints[i].positionY1),dist(player.x,player.y, checkpoints[i].positionX2, checkpoints[i].positionY2))
+						if (checkpoints[i].direction == "right"){//1
+							if (hitbox2 <=100){
+								carDirection = 1
+								player.speed = 75
+							}
 						}
-						else if (checkpoints[i].direction == left){//2
-							carDirection = 2
-							player.speed = 75
+						else if (checkpoints[i].direction == "left"){//2
+							if (hitbox2 <=100){
+								carDirection = 2
+								player.speed = 75
+							}
 							
 						}
-						else if (checkpoints[i].direction == up){//3
-							carDirection = 3
-							player.speed = 75
+						else if (checkpoints[i].direction == "up"){//3
+							if (hitbox2 <=100){
+								carDirection = 3
+								player.speed = 75
+							}
 
 						}
-						else if (checkpoints[i].direction == down){//4
-							carDirection = 4
-							player.speed = 75
+						else if (checkpoints[i].direction == "down"){//4
+							if (hitbox2 <=100){
+								carDirection = 4
+								player.speed = 75
+							}
 
 						}
-						
+					}		
 						
 				}
 		}
