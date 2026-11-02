@@ -18,6 +18,7 @@
 		let wordListChosen; //boolean flag
 		let chosenWordList;//the player's choice of word list
 		//let mouseControlsEnabled = false
+		let wrong = 0
 		let arrowMode = false
 		let carDirection = 1
 		let hitbox2
@@ -33,7 +34,7 @@
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				c = "blue";
-				carPositionFactor = 350/height+ 0.1//min()  floor() rounds to a whole integer we dont want that
+				carPositionFactor = 350/height +0.3//min()  //0.1 athomefloor() rounds to a whole integer we dont want that
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
@@ -159,71 +160,15 @@
 				let chosenAnswer = document.getElementById(clicked).innerHTML
 				if (chosenAnswer == wordJSON.EnglishWord){
 						//alert("you did it!")
-						console.log(checkpoints)
-						for (let i = 0; i < checkpoints.length, i++;){
-							hitbox2 = min(dist(player.x,player.y, checkpoints[i].positionX1, checkpoints[i].positionY1),dist(player.x,player.y, checkpoints[i].positionX2, checkpoints[i].positionY2))
-							console.log(hitbox2)
-							if (checkpoints[i].direction == "right"){//1
-								if (hitbox2 <=100){
-									carDirection = 1
-									player.speed = 200
-								}
-							}
-							else if (checkpoints[i].direction == "left"){//2
-							if (hitbox2 <=100){
-								carDirection = 2
-								player.speed = 200
-							}
-						}
-							else if (checkpoints[i].direction == "up"){//3
-							if (hitbox2 <=100){
-								carDirection = 3
-								player.speed = 200
-							}
-
-						}
-							else if (checkpoints[i].direction == "down"){//4
-								if (hitbox2 <=100){
-								carDirection = 4
-								player.speed = 200
-							}
-
-						}
-					}
+						//console.log(checkpoints)
+						wrong = 0
+						checkpoints[checkpointCounter].directions()	
+					//}
 
 				}else{
 						//alert("wrong answer")
-						for (let i = 0; i < checkpoints.length, i++;){
-							hitbox2 = min(dist(player.x,player.y, checkpoints[i].positionX1, checkpoints[i].positionY1),dist(player.x,player.y, checkpoints[i].positionX2, checkpoints[i].positionY2))
-						if (checkpoints[i].direction == "right"){//1
-							if (hitbox2 <=100){
-								carDirection = 1
-								player.speed = 75
-							}
-						}
-						else if (checkpoints[i].direction == "left"){//2
-							if (hitbox2 <=100){
-								carDirection = 2
-								player.speed = 75
-							}
-							
-						}
-						else if (checkpoints[i].direction == "up"){//3
-							if (hitbox2 <=100){
-								carDirection = 3
-								player.speed = 75
-							}
-
-						}
-						else if (checkpoints[i].direction == "down"){//4
-							if (hitbox2 <=100){
-								carDirection = 4
-								player.speed = 75
-							}
-
-						}
-					}		
-						
+						wrong = 1
+						checkpoints[checkpointCounter].directions()
 				}
 		}
 

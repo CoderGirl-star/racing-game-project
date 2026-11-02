@@ -1,4 +1,4 @@
-
+let checkpointCounter = -1
 class Checkpoint{
     constructor(positionX1,positionX2,positionY1,positionY2,completed,direction){
         this.positionX1 = positionX1
@@ -25,8 +25,10 @@ class Checkpoint{
             if (this.completed == false){
                 player.speed = 0
                 document.getElementsByClassName("container")[0].style.display = "block"
+                checkpointCounter += 1
                 getQuestion2()
                 this.completed = true
+                //console.log(checkpointCounter)
                 if (dist(player.x,player.y,this.positionX1, this.positionY1) > 250){//surprisingly convient way to exit arrow mode
                     player.speed = 100
                     arrowMode = false
@@ -39,6 +41,54 @@ class Checkpoint{
                 //}
         }
     }
+
+    directions(){
+        hitbox2 = min(dist(player.x,player.y, checkpoints[checkpointCounter].positionX1, checkpoints[checkpointCounter].positionY1),dist(player.x,player.y, checkpoints[checkpointCounter].positionX2, checkpoints[checkpointCounter].positionY2))
+							if (checkpoints[checkpointCounter].direction == "right"){//1
+								if (hitbox2 <=100){
+									carDirection = 1
+                                    if (wrong == 1){
+                                        player.speed = 75
+                                    }else{
+                                        player.speed = 200
+                                    }
+									
+								}
+							}
+							else if (checkpoints[checkpointCounter].direction == "left"){//2
+							if (hitbox2 <=100){
+								carDirection = 2
+								if (wrong == 1){
+                                        player.speed = 75
+                                    }else{
+                                        player.speed = 200
+                                    }
+							}
+						}
+							else if (checkpoints[checkpointCounter].direction == "up"){//3
+							if (hitbox2 <=100){
+								carDirection = 3
+								if (wrong == 1){
+                                        player.speed = 75
+                                    }else{
+                                        player.speed = 200
+                                    }
+							}
+
+						}
+							else if (checkpoints[checkpointCounter].direction == "down"){//4
+								if (hitbox2 <=100){
+									carDirection = 4
+									if (wrong == 1){
+                                        player.speed = 75
+                                    }else{
+                                        player.speed = 200
+                                    }
+							}
+
+						}
+    }
+
 }
 
 //checkpoints = array, object of some kind that spawns a  neon green line. it can only spawn when dist between 2 points is 100 (restricted where it can spawn) then theres collison.update/draw  
