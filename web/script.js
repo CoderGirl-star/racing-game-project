@@ -8,6 +8,7 @@
 		let pid;
 		let cars = [];
 		let checkpoints = []
+		let turns = []
 		let socket = io();
 		let newcolour = false;
 		let wordJSON;
@@ -34,7 +35,7 @@
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				c = "blue";
-				carPositionFactor = 350/height +0.3//min()  //0.1 athomefloor() rounds to a whole integer we dont want that
+				carPositionFactor = 350/height +0.3//min()  //0.1 athome
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
@@ -45,6 +46,28 @@
 				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"up")//setup values
 				checkpoints.push(checkpoint1)
 				checkpoints.push(checkpoint2)
+				let a
+				let b
+				for (i = 0; i < checkpoints.length; i++){
+					for (x = 10; x < windowWidth; x+= 50){
+						for (y = 10; y < windowHeight; y+= 60){
+							a = new Boundary(x/10000*width,y - 300/10000*height,x/10000*width,y/10000*height,false,"up")
+							b = new Boundary(x/10000*width,y/10000*height,x/10000*width,y/10000*height,false,"up")
+						}
+					}
+					if (checkpoints[i].direction == "right" || checkpoints[i].direction == "left"){
+						a.direction = "up"
+						b.direction = "up"
+					}
+					if (checkpoints[i].direction == "up"){
+						a.direction = "up"
+						b.direction = "down"
+					}
+					turns.push(a)
+					turns.push(b)
+
+				}
+				console.log(turns)
 
 
 		}
@@ -72,11 +95,14 @@
 				}
 
 				image(img2, 0, 0,windowWidth -100 ,windowHeight -150)
-				checkpoint1.draw()
-				checkpoint2.draw()
+				for (i = 0; i < checkpoints.length; i++){
+					checkpoints[i].draw()
+					checkpoints[i].collision()
+					//turns[i].redirect()
+
+				}
+				turns[0].draw2()
 				player.update()
-				checkpoint1.collision()
-				checkpoint2.collision()
 		}
 
 
@@ -162,12 +188,14 @@
 						//alert("you did it!")
 						//console.log(checkpoints)
 						wrong = 0
+						outputText("well done!")
 						checkpoints[checkpointCounter].directions()	
 					//}
 
 				}else{
 						//alert("wrong answer")
 						wrong = 1
+						outputText("wrong answer")
 						checkpoints[checkpointCounter].directions()
 				}
 		}
