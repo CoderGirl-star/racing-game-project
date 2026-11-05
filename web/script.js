@@ -8,7 +8,6 @@
 		let pid;
 		let cars = [];
 		let checkpoints = []
-		let turns = []
 		let socket = io();
 		let newcolour = false;
 		let wordJSON;
@@ -43,42 +42,12 @@
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
 				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,"right")//800,400,800,600 for college but 300, 300 500, 300 good for testing 
-				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"up")//setup values
+				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"down")//setup values
 				checkpoints.push(checkpoint1)
 				checkpoints.push(checkpoint2)
-				let a
-				let b
-				for (i = 0; i < checkpoints.length; i++){
-					for (x = 10; x < windowWidth; x+= 50){
-						for (y = 10; y < windowHeight; y+= 60){
-							a = new Boundary(x/10000*width,y - 300/10000*height,x/10000*width,y/10000*height,false,"up")
-							b = new Boundary(x/10000*width,y/10000*height,x/10000*width,y/10000*height,false,"up")
-						}
-					}
-					if (checkpoints[i].direction == "right" || checkpoints[i].direction == "left"){
-						a.direction = "up"
-						b.direction = "up"
-					}
-					if (checkpoints[i].direction == "up"){
-						a.direction = "up"
-						b.direction = "down"
-					}
-					turns.push(a)
-					turns.push(b)
-
-				}
-				console.log(turns)
-
 
 		}
-		//socket.on("coord", function (data) {
-				//p = new Car(data.x, data.y, data.c, data.s);
-				//p.update();
-				//cars.push(p);
-				//getPlayerID()
-				//console.log(p)
-				//cars[0].move()
-		//});
+		
 		function draw(){
 				frameRate(25)
 				if (carDirection == 1){
@@ -98,11 +67,10 @@
 				for (i = 0; i < checkpoints.length; i++){
 					checkpoints[i].draw()
 					checkpoints[i].collision()
-					//turns[i].redirect()
 
 				}
-				turns[0].draw2()
 				player.update()
+				console.log(player.speed)
 		}
 
 
@@ -244,7 +212,7 @@
 		}
 
 		function mouseClicked(){
-			//console.log(mouseX,mouseY)
+			console.log(mouseX,mouseY)
 		}
 
 function keyPressed() {

@@ -17,17 +17,6 @@ class Car {
 
 
     move(){
-            //if (arrowMode == true){
-                //this.x + 10
-                //if (this.x > windowWidth){
-                //this.x = 0
-                //this.y = carPositionFactor * height 
-                //this.speed = 100
-                //for (let i = 0; i < checkpoints.length; i++) {
-                    //checkpoints[i].completed = false
-                //}
-                //positioning()
-            //}else{
                 let smoothMove = lerp(0,this.speed,0.1)
                 this.x += smoothMove
                 if (this.x > windowWidth){
@@ -38,10 +27,9 @@ class Car {
                         checkpoints[i].completed = false
                     }
                     checkpointCounter = -1
-                    positioning()
-                    //mouseControlsEnabled = false
+                    
             }
-            //}
+            
     }
 
 
@@ -56,18 +44,22 @@ class Car {
                 for (let i = 0; i < checkpoints.length; i++) {
                     checkpoints[i].completed = false
                 }
+                carDirection = 1
                 checkpointCounter = -1
-                positioning()
             }
         }else{//without arrow mode
             let smoothMove = lerp(0,this.speed,0.1)
             this.y -= smoothMove
-            if (this.y > windowHeight){
+            console.log(this.x,this.y)
+            if (this.y < 10){
                 this.x = 0
-                this.y = carPositionFactor * height 
+                this.y = carPositionFactor * height
                 this.speed = 100
+                for (let i = 0; i < checkpoints.length; i++) {
+                    checkpoints[i].completed = false
+                }
                 checkpointCounter = -1
-
+                carDirection = 1
             }
         }
     }
@@ -76,22 +68,28 @@ class Car {
         if (arrowMode == true){
             this.y += 10
             if (this.y > windowHeight){
+                this.x = 0
                 this.y = carPositionFactor * height
                 this.speed = 100
                 arrowMode = false
                 for (let i = 0; i < checkpoints.length; i++) {
                     checkpoints[i].completed = false
                 }
+                carDirection = 1
                 checkpointCounter = -1
-                positioning()
             }
         }else{//without arrow mode
             let smoothMove = lerp(0,this.speed,0.1)
             this.y += smoothMove
-            if (this.y > windowWidth){
+            if (this.y > windowHeight){
+                this.x = 0
                 this.y = carPositionFactor * height 
                 this.speed = 100
+                for (let i = 0; i < checkpoints.length; i++) {
+                    checkpoints[i].completed = false
+                }
                 checkpointCounter = -1
+                carDirection = 1
             }
         }
     }
@@ -100,23 +98,26 @@ class Car {
     moveLeft(){
         if (arrowMode == true){
             this.x -= 10
-            if (this.x > windowWidth){
+            if (this.x < 0){
                 this.x = 0
+                this.y = carPositionFactor * height
                 this.speed = 100
                 arrowMode = false
                 for (let i = 0; i < checkpoints.length; i++) {
                     checkpoints[i].completed = false
                 }
                 checkpointCounter = -1
-                positioning()
+                carDirection = 1
             }
         }else{//without arrow mode
             let smoothMove = lerp(0,this.speed,0.1)
             this.x -= smoothMove
             if (this.x > windowWidth){
                 this.x = 0
+                this.y = carPositionFactor * height
                 this.speed = 100
                 checkpointCounter = -1
+                carDirection = 1
             }
         }
     }
