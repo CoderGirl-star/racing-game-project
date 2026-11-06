@@ -27,6 +27,7 @@ class Car {
                         checkpoints[i].completed = false
                     }
                     checkpointCounter = -1
+                    time = millis()-previousTime
                     
             }
             

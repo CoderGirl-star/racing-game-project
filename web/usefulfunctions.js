@@ -40,14 +40,7 @@ function positioning() {
         }
 }
 
-function timer(){
-    let startTime = millis() - 1000
-    console.log(startTime)
-    if ((millis() - startTime)/1000 >= 2){
-        player.speed = 100
-    }
 
-}
 
 
 

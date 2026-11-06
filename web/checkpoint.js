@@ -51,7 +51,7 @@ class Checkpoint{
                                         player.speed = 75
                                     }else{
                                         player.speed = 200
-                                        timer()
+                                        previousTime = millis()
                                     }
 									
 								}

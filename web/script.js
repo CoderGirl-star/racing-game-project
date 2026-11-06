@@ -22,11 +22,14 @@
 		let arrowMode = false
 		let carDirection = 1
 		let hitbox2
+		let time
+		let previousTime 
 
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
 				//background(255);
+				time = millis() + 2
 				img = await loadImage("map.png")
 				img2 = await loadImage("map2.png")
 				//how to do random from list (from tutorial)
@@ -42,25 +45,41 @@
 				player = new Car(0,carPositionFactor* height ,c,100)//0,350
 				cars.push(player)
 				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,"right")//800,400,800,600 for college but 300, 300 500, 300 good for testing 
-				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"down")//setup values
+				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"left")//setup values
 				checkpoints.push(checkpoint1)
 				checkpoints.push(checkpoint2)
 
 		}
 		
 		function draw(){
-				frameRate(25)
+				frameRate(30)
 				if (carDirection == 1){
 					player.move()
+					while (player.speed > 100){
+							player.speed -= (time +10)/1000
+							console.log(player.speed)
+						}
 				}
 				else if (carDirection == 2){
 					player.moveLeft()
+					while (player.speed > 100){
+							player.speed -= (time +10)/1000
+							//console.log(player.speed)
+						}
 				}
 				else if (carDirection == 3){
 					player.moveUp()
+					while (player.speed > 100){
+							player.speed -= (time + 10)/1000
+							//console.log(player.speed)
+						}
 				}
 				else if (carDirection == 4){
 					player.moveDown()
+					while (player.speed > 100){
+							player.speed -= (time+10)/1000
+							//console.log(player.speed)
+						}
 				}
 
 				image(img2, 0, 0,windowWidth -100 ,windowHeight -150)
@@ -70,7 +89,7 @@
 
 				}
 				player.update()
-				console.log(player.speed)
+				//console.log(player.speed)
 		}
 
 
