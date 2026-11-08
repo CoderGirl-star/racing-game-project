@@ -32,6 +32,7 @@
 				time = millis() + 2
 				img = await loadImage("map.png")
 				img2 = await loadImage("map2.png")
+				img3 = await loadImage("map3.png")
 				//how to do random from list (from tutorial)
 				//let a = [10, 20, 30, 40, 50];
 				//let i = Math.floor(Math.random() * a.length);
@@ -82,7 +83,7 @@
 						}
 				}
 
-				image(img2, 0, 0,windowWidth -100 ,windowHeight -150)
+				image(img3, 0, 0,windowWidth -100 ,windowHeight -150)
 				for (i = 0; i < checkpoints.length; i++){
 					checkpoints[i].draw()
 					checkpoints[i].collision()
