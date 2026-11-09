@@ -24,26 +24,29 @@
 		let hitbox2
 		let time
 		let previousTime 
+		let menuMode
 
 		async function setup() {
 				createCanvas(windowWidth -100 ,windowHeight-150);
 				colorMode(HSB); //simpler and easier to understand. hue saturation brightness
 				//background(255);
 				time = millis() + 2
-				img = await loadImage("map.png")
-				img2 = await loadImage("map2.png")
-				img3 = await loadImage("map3.png")
+				img = await loadImage("assets/map.png")
+				img2 = await loadImage("assets/map2.png")
+				img3 = await loadImage("assets/map3.png")
+				img4 = await loadImage("assets/startMenu.png")
+				img5 = await loadImage("assets/settings.png")
 				//how to do random from list (from tutorial)
 				//let a = [10, 20, 30, 40, 50];
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
-				c = "blue";
-				carPositionFactor = 350/height +0.3//min()  //0.1 athome
+				menuMode = 1
+				carPositionFactor = 350/height +0.3//min()  //0.1 at home
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
 				//346 219 difference, use min()
-				player = new Car(0,carPositionFactor* height ,c,100)//0,350
+				player = new Car(0,carPositionFactor* height ,"blue",100)//0,350
 				cars.push(player)
 				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,"right")//800,400,800,600 for college but 300, 300 500, 300 good for testing 
 				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"left")//setup values
@@ -53,7 +56,8 @@
 		}
 		
 		function draw(){
-				frameRate(30)
+				if (menuMode == 0){
+					frameRate(30)
 				if (carDirection == 1){
 					player.move()
 					while (player.speed > 100){
@@ -91,6 +95,27 @@
 				}
 				player.update()
 				//console.log(player.speed)
+				}
+				else if (menuMode == 1){
+					image(img4, 0, 0,windowWidth -100 ,windowHeight -150)
+					document.getElementById("startButton").style.display = "inline-block"
+				}
+
+				else if (menuMode == 2){
+					image(img5, 0, 0,windowWidth -100 ,windowHeight -150)
+					document.getElementById("selectWordList").style.display = "block"
+					document.getElementById("nextButton").style.display = "block"
+					document.getElementById("selectGM").style.display = "block"
+
+				}
+				
+		}
+
+		function nextMenu() {
+			if (menuMode == 1){
+				document.getElementById("startButton").style.display = "none"
+			}
+			menuMode += 1
 		}
 
 

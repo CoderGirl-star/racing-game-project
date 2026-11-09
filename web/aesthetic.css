@@ -53,3 +53,40 @@ body{
 #selectWordList{
     display: none;
 }
+
+#colourCarMenu{
+    display: none;
+}
+#selectGM{
+    display: none;
+}
+
+#startButton{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #AC0213;
+    padding: 15px;
+    border-radius: 20px;
+    border-color: #f8031b;
+    color: rgb(253, 135, 0);
+    font-weight: 777;
+    font-size: xx-large
+}
+
+#nextButton{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 80;
+    right: 80;
+    background-color: #ffacb4;
+    padding: 15px;
+    border-radius: 20px;
+    border-color: #423738;
+    color: black;
+    font-weight: 777;
+    font-size: x-large
+}
