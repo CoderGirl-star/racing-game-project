@@ -60,6 +60,7 @@ class Car {
                     checkpoints[i].completed = false
                 }
                 checkpointCounter = -1
+                time = millis()-previousTime
                 carDirection = 1
             }
         }
@@ -90,6 +91,7 @@ class Car {
                     checkpoints[i].completed = false
                 }
                 checkpointCounter = -1
+                time = millis()-previousTime
                 carDirection = 1
             }
         }
@@ -118,6 +120,7 @@ class Car {
                 this.y = carPositionFactor * height
                 this.speed = 100
                 checkpointCounter = -1
+                time = millis()-previousTime
                 carDirection = 1
             }
         }

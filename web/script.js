@@ -1,11 +1,14 @@
 		let player; //= new Car(50,50,'blue')
 		let img
 		let img2
+		let img3
+		let img4
+		let img5
+		let images = []
 		let x = 0
 		let y = 0
 		let dx;
 		let dy;
-		let pid;
 		let cars = [];
 		let checkpoints = []
 		let socket = io();
@@ -17,13 +20,16 @@
 		let yPositionFactor;
 		let wordListChosen; //boolean flag
 		let chosenWordList;//the player's choice of word list
-		//let mouseControlsEnabled = false
 		let wrong = 0
 		let arrowMode = false
 		let carDirection = 1
 		let hitbox2
 		let time
 		let previousTime 
+		let gameMode
+		const ACCELSPEEDS = [250,200,150]//in the order of easy medium hard
+		const DECELSPEEDS = [85,75,55]
+		let GMChosen = false
 		let menuMode
 
 		async function setup() {
@@ -34,6 +40,9 @@
 				img = await loadImage("assets/map.png")
 				img2 = await loadImage("assets/map2.png")
 				img3 = await loadImage("assets/map3.png")
+				images.push(img)
+				images.push(img2)
+				images.push(img3)
 				img4 = await loadImage("assets/startMenu.png")
 				img5 = await loadImage("assets/settings.png")
 				//how to do random from list (from tutorial)
@@ -87,7 +96,7 @@
 						}
 				}
 
-				image(img3, 0, 0,windowWidth -100 ,windowHeight -150)
+				image(images[gameMode], 0, 0,windowWidth -100 ,windowHeight -150)
 				for (i = 0; i < checkpoints.length; i++){
 					checkpoints[i].draw()
 					checkpoints[i].collision()
@@ -118,6 +127,21 @@
 			menuMode += 1
 		}
 
+		function gameModeSelector(){
+			GMChosen = true
+			let getUserMode = (document.getElementById("modesList").selectedIndex)
+			if (getUserMode == 0){//easy
+				gameMode = 0
+			}
+			else if (getUserMode == 1){//medium
+				gameMode = 1
+			}
+			else if (getUserMode == 3){//hard
+				gameMode = 2
+				
+			}
+		}
+
 
 		socket.on("newLang", function (data) {
 				//server gave us newScore
@@ -126,7 +150,7 @@
 				//console.log(data.w)
 				const DATABASE_LENGTH  = data.w[0].length
 				let qu = getRandomNumber(DATABASE_LENGTH)
-				wordJSON = data.w[0][qu]; //question
+				wordJSON = data.w[0][qu]; //question that is being asked
 				//console.log(wordJSON); //
 				if (wordJSON.EnglishWord == null ||wordJSON.FrenchWord == null) {
 						//those pesky titles and weird null entries
@@ -249,14 +273,14 @@
 			}
 		});
 
-		function chooseWordList(){
+		function chooseWordList(){//helper function for the wordlist selector
 			wordListChosen = true
 			let getWordList = (document.getElementById("wordsList").selectedIndex)
 			chosenWordList = topics[getWordList]
 			//console.log(chosenWordList)
 		}
 
-		function mouseClicked(){
+		function mouseClicked(){//debug function to find coordinates easier
 			console.log(mouseX,mouseY)
 		}
 

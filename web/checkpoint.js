@@ -33,7 +33,7 @@ class Checkpoint{
                     player.speed = 100
                     arrowMode = false
                 }
-                //console.log(checkpointLength)//200
+                //console.log(checkpointLength)//ACCELSPEEDS[gameMode]
                 //console.log(player.x,player.y, this.positionY1, this.positionY2)
             }
             //if (this.completed = true){
@@ -48,9 +48,9 @@ class Checkpoint{
 								if (hitbox2 <=100){
 									carDirection = 1
                                     if (wrong == 1){
-                                        player.speed = 75
+                                        player.speed = DECELSPEEDS[gameMode]
                                     }else{
-                                        player.speed = 200
+                                        player.speed = ACCELSPEEDS[gameMode]
                                         previousTime = millis()
                                     }
 									
@@ -60,9 +60,10 @@ class Checkpoint{
 							if (hitbox2 <=100){
 								carDirection = 2
 								if (wrong == 1){
-                                        player.speed = 75
+                                        player.speed = DECELSPEEDS[gameMode]
                                     }else{
-                                        player.speed = 200
+                                        player.speed = ACCELSPEEDS[gameMode]
+                                        previousTime = millis()
                                     }
 							}
 						}
@@ -70,9 +71,10 @@ class Checkpoint{
 							if (hitbox2 <=100){
 								carDirection = 3
 								if (wrong == 1){
-                                        player.speed = 75
+                                        player.speed = DECELSPEEDS[gameMode]
                                     }else{
-                                        player.speed = 200
+                                        player.speed = ACCELSPEEDS[gameMode]
+                                        previousTime = millis()
                                     }
 							}
 
@@ -81,9 +83,10 @@ class Checkpoint{
 								if (hitbox2 <=100){
 									carDirection = 4
 									if (wrong == 1){
-                                        player.speed = 75
+                                        player.speed = DECELSPEEDS[gameMode]
                                     }else{
-                                        player.speed = 200
+                                        player.speed = ACCELSPEEDS[gameMode]
+                                        previousTime = millis()
                                     }
 							}
 
