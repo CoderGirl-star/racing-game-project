@@ -44,7 +44,7 @@ class Checkpoint{
 
     directions(){
         hitbox2 = min(dist(player.x,player.y, checkpoints[checkpointCounter].positionX1, checkpoints[checkpointCounter].positionY1),dist(player.x,player.y, checkpoints[checkpointCounter].positionX2, checkpoints[checkpointCounter].positionY2))
-							if (checkpoints[checkpointCounter].direction == "right"){//1
+							if (checkpoints[checkpointCounter].direction == "right"){//direction1
 								if (hitbox2 <=100){
 									carDirection = 1
                                     if (wrong == 1){
@@ -56,7 +56,7 @@ class Checkpoint{
 									
 								}
 							}
-							else if (checkpoints[checkpointCounter].direction == "left"){//2
+							else if (checkpoints[checkpointCounter].direction == "left"){//direction2
 							if (hitbox2 <=100){
 								carDirection = 2
 								if (wrong == 1){
@@ -67,7 +67,7 @@ class Checkpoint{
                                     }
 							}
 						}
-							else if (checkpoints[checkpointCounter].direction == "up"){//3
+							else if (checkpoints[checkpointCounter].direction == "up"){//direction3
 							if (hitbox2 <=100){
 								carDirection = 3
 								if (wrong == 1){
@@ -79,7 +79,7 @@ class Checkpoint{
 							}
 
 						}
-							else if (checkpoints[checkpointCounter].direction == "down"){//4
+							else if (checkpoints[checkpointCounter].direction == "down"){//direction4
 								if (hitbox2 <=100){
 									carDirection = 4
 									if (wrong == 1){

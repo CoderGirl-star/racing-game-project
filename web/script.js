@@ -4,6 +4,7 @@
 		let img3
 		let img4
 		let img5
+		let img6
 		let images = []
 		let x = 0
 		let y = 0
@@ -45,6 +46,7 @@
 				images.push(img3)
 				img4 = await loadImage("assets/startMenu.png")
 				img5 = await loadImage("assets/settings.png")
+				img6 = await loadImage("assets/user.png")
 				//how to do random from list (from tutorial)
 				//let a = [10, 20, 30, 40, 50];
 				//let i = Math.floor(Math.random() * a.length);
@@ -105,17 +107,27 @@
 				player.update()
 				//console.log(player.speed)
 				}
-				else if (menuMode == 1){
+				else if (menuMode == 1){//welcome menu
 					image(img4, 0, 0,windowWidth -100 ,windowHeight -150)
-					document.getElementById("startButton").style.display = "inline-block"
+					document.getElementById("startButton").style.display = "inline-block"//this looks better
 				}
 
-				else if (menuMode == 2){
+				else if (menuMode == 2){//settings menu
 					image(img5, 0, 0,windowWidth -100 ,windowHeight -150)
 					document.getElementById("selectWordList").style.display = "block"
 					document.getElementById("nextButton").style.display = "block"
 					document.getElementById("selectGM").style.display = "block"
 
+				}
+
+				else if (menuMode == 3){
+					image(img6, 0, 0,windowWidth -100 ,windowHeight -150)
+					document.getElementById("selectWordList").style.display = "none"
+					document.getElementById("nextButton").style.display = "none"
+					document.getElementById("selectGM").style.display = "none"
+					document.getElementById("playButton").style.display = "inline-block"
+					document.getElementById("colourCarMenu").style.display = "block"
+					player.update()
 				}
 				
 		}
@@ -124,12 +136,17 @@
 			if (menuMode == 1){
 				document.getElementById("startButton").style.display = "none"
 			}
+			if (menuMode == 3){
+				let preview = new Car(180,303,"blue",0)
+				cars.push(preview)
+
+			}
 			menuMode += 1
 		}
 
 		function gameModeSelector(){
 			GMChosen = true
-			let getUserMode = (document.getElementById("modesList").selectedIndex)
+			let getUserMode = (document.getElementById("modesList").selectedIndex)//get the user selected gamemode
 			if (getUserMode == 0){//easy
 				gameMode = 0
 			}
@@ -239,8 +256,10 @@
 
 
 		function changeColour(){
-			let chosenColour = document.getElementById("carColour").value
-			player.colour = chosenColour
+			for (let i = 0; i < cars; i++){
+				let chosenColour = document.getElementById("carColour").value
+				cars[i].colour = chosenColour
+			}
 		}
 
 		function populateOptions(){

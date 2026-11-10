@@ -90,3 +90,17 @@ body{
     font-weight: 777;
     font-size: x-large
 }
+
+#playButton{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 800;
+    background-color: #AC0213;
+    padding: 15px;
+    border-radius: 20px;
+    border-color: #f8031b;
+    color: rgb(253, 135, 0);
+    font-weight: 777;
+    font-size: xx-large
+}
