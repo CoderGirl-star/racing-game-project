@@ -115,11 +115,14 @@ class Car {
         }else{//without arrow mode
             let smoothMove = lerp(0,this.speed,0.1)
             this.x -= smoothMove
-            if (this.x > windowWidth){
+            if (this.x < 0){
                 this.x = 0
                 this.y = carPositionFactor * height
                 this.speed = 100
                 checkpointCounter = -1
+                for (let i = 0; i < checkpoints.length; i++) {
+                    checkpoints[i].completed = false
+                }
                 time = millis()-previousTime
                 carDirection = 1
             }

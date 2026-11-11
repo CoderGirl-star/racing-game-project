@@ -53,7 +53,7 @@
 				//let i = Math.floor(Math.random() * a.length);
 				//let r = a[i];
 				menuMode = 1
-				carPositionFactor = 350/height +0.3//min()  //0.1 at home
+				carPositionFactor = 350/height +0.1//min()  //0.1 at home 0.3 normally
 				coordConverter(300,500)
 				console.log(width,height)//1436,545 home 65% of 545 = roughly 350 1812 764 college
 				//console.log(xPositionFactor,yPositionFactor)
@@ -77,6 +77,9 @@
 					}
 				if (carDirection == 1){
 					player.move()
+					//if (player.x > windowWidth - 400){
+						//carDirection = 3//go up
+					//}
 					while (player.speed > 100){
 							player.speed -= (time +10)/1000
 							console.log(player.speed)
@@ -91,9 +94,6 @@
 				}
 				else if (carDirection == 3){
 					player.moveUp()
-					if (player.y <= windowHeight - 200){
-						player.move()
-					}
 					while (player.speed > 100){
 							player.speed -= (time + 10)/1000
 							//console.log(player.speed)
@@ -144,11 +144,6 @@
 		function nextMenu() {
 			if (menuMode == 1){
 				document.getElementById("startButton").style.display = "none"
-			}
-			if (menuMode == 3){
-				//cars.push(preview)
-				console.log(cars)
-
 			}
 			menuMode += 1
 		}
