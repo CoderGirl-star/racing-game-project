@@ -1,4 +1,5 @@
 		let player; //= new Car(50,50,'blue')
+		let preview; //another car but a preview
 		let img
 		let img2
 		let img3
@@ -28,7 +29,7 @@
 		let time
 		let previousTime 
 		let gameMode
-		const ACCELSPEEDS = [250,200,150]//in the order of easy medium hard
+		const ACCELSPEEDS = [275,225,165]//in the order of easy medium hard
 		const DECELSPEEDS = [85,75,55]
 		let GMChosen = false
 		let menuMode
@@ -58,7 +59,9 @@
 				//console.log(xPositionFactor,yPositionFactor)
 				//346 219 difference, use min()
 				player = new Car(0,carPositionFactor* height ,"blue",100)//0,350
+				preview = new Car(180,303,"blue",0)
 				cars.push(player)
+				cars.push(preview)
 				checkpoint1 = new Checkpoint(0.21*width,0.5*height,0.34*width,0.5*height,false,"right")//800,400,800,600 for college but 300, 300 500, 300 good for testing 
 				checkpoint2 = new Checkpoint(0.9*width,0.9*height,0.15*width,0.4*height,false,"left")//setup values
 				checkpoints.push(checkpoint1)
@@ -69,6 +72,9 @@
 		function draw(){
 				if (menuMode == 0){
 					frameRate(30)
+					if (gameMode == 2){
+						checkpoint1.direction = "up"
+					}
 				if (carDirection == 1){
 					player.move()
 					while (player.speed > 100){
@@ -85,6 +91,9 @@
 				}
 				else if (carDirection == 3){
 					player.moveUp()
+					if (player.y <= windowHeight - 200){
+						player.move()
+					}
 					while (player.speed > 100){
 							player.speed -= (time + 10)/1000
 							//console.log(player.speed)
@@ -98,8 +107,8 @@
 						}
 				}
 
-				image(images[gameMode], 0, 0,windowWidth -100 ,windowHeight -150)
-				for (i = 0; i < checkpoints.length; i++){
+				image(images[gameMode], 0, 0,windowWidth -100 ,windowHeight -150)//select the right game map
+				for (i = 0; i < checkpoints.length; i++){//checkpoint drawing and collision
 					checkpoints[i].draw()
 					checkpoints[i].collision()
 
@@ -120,14 +129,14 @@
 
 				}
 
-				else if (menuMode == 3){
+				else if (menuMode == 3){//user menu
 					image(img6, 0, 0,windowWidth -100 ,windowHeight -150)
 					document.getElementById("selectWordList").style.display = "none"
 					document.getElementById("nextButton").style.display = "none"
 					document.getElementById("selectGM").style.display = "none"
 					document.getElementById("playButton").style.display = "inline-block"
 					document.getElementById("colourCarMenu").style.display = "block"
-					player.update()
+					preview.update()
 				}
 				
 		}
@@ -137,8 +146,8 @@
 				document.getElementById("startButton").style.display = "none"
 			}
 			if (menuMode == 3){
-				let preview = new Car(180,303,"blue",0)
-				cars.push(preview)
+				//cars.push(preview)
+				console.log(cars)
 
 			}
 			menuMode += 1
@@ -153,12 +162,18 @@
 			else if (getUserMode == 1){//medium
 				gameMode = 1
 			}
-			else if (getUserMode == 3){//hard
+			else if (getUserMode == 2){//hard
 				gameMode = 2
 				
 			}
 		}
 
+		function startGameplay(){
+			document.getElementById("playButton").style.display = "none"
+			document.getElementById("colourCarMenu").style.display = "none"
+			cars.pop()
+			menuMode = 0
+		}
 
 		socket.on("newLang", function (data) {
 				//server gave us newScore
@@ -256,10 +271,9 @@
 
 
 		function changeColour(){
-			for (let i = 0; i < cars; i++){
 				let chosenColour = document.getElementById("carColour").value
-				cars[i].colour = chosenColour
-			}
+				cars[0].colour = chosenColour
+				cars[1].colour = chosenColour
 		}
 
 		function populateOptions(){
@@ -303,7 +317,7 @@
 			console.log(mouseX,mouseY)
 		}
 
-function keyPressed() {
+function keyPressed() {//for arrow mode
 	if (keyCode === 38) {//up
         player.moveUp()
         return false;
