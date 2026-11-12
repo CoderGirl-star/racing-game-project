@@ -28,12 +28,6 @@ class Checkpoint{
                 checkpointCounter += 1
                 getQuestion2()
                 this.completed = true
-                //console.log(checkpointCounter)
-                if (dist(player.x,player.y,this.positionX1, this.positionY1) > 250){//surprisingly convient way to exit arrow mode
-                    player.speed = 100
-                    arrowMode = false
-                }
-                //console.log(checkpointLength)//ACCELSPEEDS[gameMode]
                 //console.log(player.x,player.y, this.positionY1, this.positionY2)
             }
             //if (this.completed = true){

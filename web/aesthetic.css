@@ -29,7 +29,7 @@ body{
 
 #answer1{
     background-color: #AC0213;
-    border-color:#60010b;
+    border-color:royalblue;
     border-style: solid;
     border-width: 2.5px;
      padding: 15px;
@@ -39,7 +39,7 @@ body{
 }
 #answer2{
     background-color: #c50216;
-    border-color:#60010b;
+    border-color:royalblue;
     border-style: solid;
     border-width: 2.5px;
      padding: 15px;
@@ -49,7 +49,7 @@ body{
 }
 #answer3{
     background-color: #de0319;
-    border-color:#60010b;
+    border-color:royalblue;
     border-style: solid;
     border-width: 2.5px;
      padding: 15px;
@@ -59,7 +59,7 @@ body{
 }
 #answer4{
     background-color: #f8031b;
-    border-color:#60010b;
+    border-color:royalblue;
     border-style: solid;
     border-width: 2.5px;
     padding: 15px;
