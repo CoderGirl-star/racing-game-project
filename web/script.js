@@ -24,6 +24,9 @@ let yPositionFactor;
 let wordListChosen; //boolean flag
 let chosenWordList;//the player's choice of word list
 let wrong = 0
+let wrongQuestions = []
+let rightQuestions = []
+let questionCounter;
 let arrowMode = false
 let carDirection = 1
 let hitbox2
@@ -34,6 +37,7 @@ const ACCELSPEEDS = [275, 225, 165]//in the order of easy medium hard
 const DECELSPEEDS = [85, 75, 55]
 let GMChosen = false
 let menuMode
+let score
 
 async function setup() {
 	createCanvas(windowWidth - 100, windowHeight - 150);
@@ -139,14 +143,31 @@ function draw() {
 		document.getElementById("playButton").style.display = "inline-block"
 		document.getElementById("colourCarMenu").style.display = "block"
 		preview.update()
+		stroke("black")
+		textSize(50)
+		text("instructions", windowWidth / 2, windowHeight / 2 - 300)
+		textSize(20)
+		text("you might need to use arrow keys, right doesnt work", windowWidth / 2, windowHeight / 2 - 200)  
+		text("press += button to stop moving", windowWidth / 2, windowHeight / 2 - 100) 
+		noStroke()
 	}
 
-	//else if (menuMode == 4) {//end menu
-		//text("here are stats idk", 50, 50)
-		//line(windowWidth / 2, windowHeight / 2, windowWidth - 500, windowHeight / 2)
-		//image(img7, 0, 0, windowWidth - 100, windowHeight - 150)
-		//document.getElementsByClassName("container")[0].style.display = "none"
-	//}
+	else if (menuMode == 4) {//end menu
+		document.getElementsByClassName("container")[0].style.display = "none"
+		image(img7, 0, 0, windowWidth - 100, windowHeight - 150)
+		stroke("white")
+		textSize(20)
+		text("number of right answers: ", 100, 158)
+		text(rightQuestions.length-1 , 100, 200)
+		text("time taken: " + millis(), 100, 250)
+		text("time taken: " + millis(), 100, 250)
+		score = ((rightQuestions.length-1)/(millis()) *100)
+		text("score = " + score, 100, 303)
+		for (i = 0; i < wrongQuestions.length; i++){
+			text(wrongQuestions[i].FrenchWord, 200, 505 - i*5)
+		}
+		
+	}
 
 }
 
@@ -261,6 +282,8 @@ function getAnswer(clicked) {
 		//alert("you did it!")
 		//console.log(checkpoints)
 		wrong = 0
+		questionCounter +=1 
+		rightQuestions.push(wordJSON)
 		outputText("well done!")
 		checkpoints[checkpointCounter].directions()
 		//}
@@ -268,6 +291,8 @@ function getAnswer(clicked) {
 	} else {
 		//alert("wrong answer")
 		wrong = 1
+		questionCounter +=1 
+		wrongQuestions.push(wordJSON)
 		outputText("wrong answer")
 		checkpoints[checkpointCounter].directions()
 	}
@@ -345,8 +370,8 @@ function keyPressed() {//for arrow mode
 		return false;
 	}
 
-	//if (keyCode === 70) {
-		//menuMode = 4
-	//}
+	if (keyCode === 70) {
+		menuMode = 4
+	}
 
 }
