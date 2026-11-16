@@ -145,30 +145,20 @@ function draw() {
 		preview.update()
 		stroke("black")
 		textSize(50)
-		text("instructions", windowWidth / 2, windowHeight / 2 - 300)
+		text("instructions", windowWidth / 2 + 100, windowHeight / 2 - 150)
 		textSize(20)
-		text("you might need to use arrow keys, right doesnt work", windowWidth / 2, windowHeight / 2 - 200)  
-		text("press += button to stop moving", windowWidth / 2, windowHeight / 2 - 100) 
+		text("you might need to use arrow keys to get to checkpoints", windowWidth / 2 + 100, windowHeight / 2 - 100)  
+		text("press += button to stop constantly moving", windowWidth / 2 + 100, windowHeight / 2 - 75) 
+		text("right arrow doesn't work", windowWidth / 2 + 100, windowHeight / 2 - 50)
+		text("press F to finish and view stats (experimental feature)", windowWidth / 2 + 100, windowHeight / 2 - 25)
 		noStroke()
 	}
 
 	else if (menuMode == 4) {//end menu
 		document.getElementsByClassName("container")[0].style.display = "none"
 		image(img7, 0, 0, windowWidth - 100, windowHeight - 150)
-		stroke("white")
-		textSize(20)
-		text("number of right answers: ", 100, 158)
-		text(rightQuestions.length-1 , 100, 200)
-		text("time taken: " + millis(), 100, 250)
-		text("time taken: " + millis(), 100, 250)
-		score = ((rightQuestions.length-1)/(millis()) *100)
-		text("score = " + score, 100, 303)
-		for (i = 0; i < wrongQuestions.length; i++){
-			text(wrongQuestions[i].FrenchWord, 200, 505 - i*5)
-		}
-		
-	}
-
+		endStats()
+}
 }
 
 function nextMenu() {
@@ -177,6 +167,20 @@ function nextMenu() {
 	}
 	menuMode += 1
 }
+
+function endStats(){
+	stroke("white")
+	textSize(20)
+	text("number of right answers: ", 100, 85)
+	text(rightQuestions.length-1 , 100, 115)
+	text("time taken: " + round(millis()/1000,2), 100, 145)
+	score = ((rightQuestions.length-1)/(millis()/1000) *100)*100
+	text("score = " + round(score), 100, 170)
+	for (i = 0; i < wrongQuestions.length; i++){
+			text(wrongQuestions[i].EnglishWord, 200, (windowHeight/2) - i*15)
+	}
+		
+	}
 
 function gameModeSelector() {
 	GMChosen = true
